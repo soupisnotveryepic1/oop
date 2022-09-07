@@ -11,7 +11,7 @@ Clinic::Clinic(std::string name, int max_size) {
     clinic_name = name;
     max_size = max_size;
     index = 0;
-    Cage* = new Cage[max_size];
+    cages = new Cage[max_size];
 }
 
 int Clinic::get_number_of_cages() {
