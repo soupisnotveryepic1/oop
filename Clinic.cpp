@@ -7,9 +7,9 @@ Clinic::Clinic(){
     index = 0;
 }
 
-Clinic::Clinic(std::string name, int max_size) {
+Clinic::Clinic(std::string name, int maxSize) {
     clinic_name = name;
-    max_size = max_size;
+    max_size = maxSize;
     index = 0;
     cages = new Cage[max_size];
 }
@@ -27,11 +27,13 @@ Cage* Clinic::get_cages(){
 }
 
 bool Clinic::add_cage(Cage new_cage) {
-    if (index >= max_size){
+
+    if (index == max_size){
         return false;
     } else {
         cages[index] = new_cage;
         index++;
+
         return true;
     }
     return true;

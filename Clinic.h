@@ -10,7 +10,7 @@ private:
     Cage* cages;
 public:
     Clinic();                                      // default constructor
-    Clinic(std::string name, int max_size);        // constructor with given Clinic size and
+    Clinic(std::string name, int maxSize);        // constructor with given Clinic size and
     // Clinic name
 
     int get_number_of_cages();                     // returns the number of cages currently in the the clinic
