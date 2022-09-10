@@ -5,7 +5,7 @@ using namespace sf;
 #include "Player.h"
 
 void Player::initTexture() {
-    this->playerTexture.loadFromFile("C:/Users/Michael Lee/Downloads/sprite.png");
+    this->playerTexture.loadFromFile("C:/textures/sprite.png");
 }
 
 void Player::initSprite(){

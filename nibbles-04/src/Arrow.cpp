@@ -4,7 +4,7 @@ using namespace sf;
 #include "Arrow.h"
 
 void Arrow::initTexture() {
-    this->arrowTexture.loadFromFile("C:/Users/Michael Lee/Downloads/arrow.png");
+    this->arrowTexture.loadFromFile("C:/textures/arrow.png");
 }
 
 void Arrow::initSprite(){

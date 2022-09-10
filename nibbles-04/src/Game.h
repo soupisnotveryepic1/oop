@@ -11,13 +11,20 @@ class Game{
 private:
     RenderWindow* window;
     Player* player;
+    Texture t;
+    Sprite s;
 public:
     Game(int height, int width, string name){
         window = new RenderWindow(VideoMode(height,width), name);
         this->window->setFramerateLimit(144);
         player = new Player(400,400);
     }
+
     void run(){
+        t.loadFromFile("C:/textures/background.gif");
+        s.setTexture(t);
+        s.setPosition(0,0);
+        s.scale(1.5,1.5);
         while (window->isOpen())
         {
             Event event;
@@ -53,6 +60,7 @@ public:
 
             }
             window->clear();
+            window->draw(s);
             player->draw(window);
             window->display();
         }
