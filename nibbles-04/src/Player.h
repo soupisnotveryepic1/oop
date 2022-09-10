@@ -13,19 +13,28 @@ private:
     int speed;
     Arrow* arrows;
     int arrows_left;
+    int arrow_index;
+    bool arrow_fired;
+    bool reload_arrows;
     void initTexture();
     void initSprite();
 public:
     Player(int x_pos, int y_pos);
     ~Player();
-    void update();
-    void render(RenderTarget& Target);
     void draw(RenderWindow* window){
         window->draw(playerSprite);
-        if (arrows->fire_arrow()){
-            arrows->move_arrow();
-            arrows->draw(window);
+        for (int i = 0; i < 50; i++) {
+            if (arrows_left > 0 && arrow_fired) {
+                arrows[i].move_arrow();
+                arrows[i].draw(window);
+            }
+            //printf("%d",reload_arrows);
+            if (reload_arrows && i == 49){
+                i = 0;
+                reload_arrows = false;
+            }
         }
+
     }
     void move_right(){
         playerSprite.move(speed,0);
@@ -46,13 +55,25 @@ public:
     int get_speed(){
         return speed;
     }
+    void reload(){
+        arrows_left = 50;
+        arrow_index = 0;
+        printf("Reloaded");
+        delete[] arrows;
+        arrows = new Arrow[50];
+        reload_arrows = true;
+    }
     void use_arrow(){
-        if (arrows_left > 0){
-            arrows_left--;
-            arrows->shoot_arrow(playerSprite.getPosition());
-        } else {
-            printf("Out of arrows!\n");
-        }
-        printf("Fired 2");
+        //for (int i = 0; i < 50; i++)
+            if (!arrows[arrow_index].isFired() && arrows_left > 1) {
+                arrows_left--;
+                arrow_fired = true;
+                arrows[arrow_index].use(playerSprite.getPosition());
+                arrow_index++;
+                //break;
+            }
+    }
+    int no_arrows_left(){
+        return arrows_left;
     }
 };

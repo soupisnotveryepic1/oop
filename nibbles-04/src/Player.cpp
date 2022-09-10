@@ -18,19 +18,14 @@ Player::Player(int x_pos, int y_pos){
     this->initTexture();
     this->initSprite();
     speed = 2;
-    arrows = new Arrow[5];
     arrows_left = 50;
-    printf("Render 1");
+    arrows = new Arrow[50];
+    arrow_fired = false;
+    arrow_index = 0;
+    reload_arrows = false;
 }
 
 Player::~Player(){
 
 }
 
-void Player::render(sf::RenderTarget &target) {
-    target.draw(this->playerSprite);
-}
-
-void Player::update(){
-
-}

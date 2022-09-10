@@ -18,5 +18,4 @@ Arrow::Arrow(){
     this->arrow_direction.x = 1;
     this->arrow_direction.y = 0;
     this->arrowSpeed = 2;
-    fired = false;
 }

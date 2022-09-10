@@ -6,6 +6,7 @@
 using namespace std;
 using namespace sf;
 
+
 class Game{
 private:
     RenderWindow* window;
@@ -41,10 +42,15 @@ public:
                 if (Keyboard::isKeyPressed(Keyboard::U)){
                     player->upgrade_speed();
                 }
-                if (Keyboard::isKeyPressed(Keyboard::Space)){
-
-                    player->use_arrow();
+                if (event.type == Event::KeyReleased){
+                    if (event.key.code == Keyboard::Space) {
+                        player->use_arrow();
+                    }
                 }
+                if (Keyboard::isKeyPressed(Keyboard::R) && player->no_arrows_left() == 1){
+                    player->reload();
+                }
+
             }
             window->clear();
             player->draw(window);

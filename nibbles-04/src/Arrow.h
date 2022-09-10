@@ -17,17 +17,21 @@ public:
     Arrow();
     void draw(RenderWindow* window){
         window->draw(arrowSprite);
+
     }
     void move_arrow(){
-        this->arrowSprite.move(this->arrowSpeed * arrow_direction);
+        arrowSprite.move(this->arrowSpeed * arrow_direction);
+
     }
-    void shoot_arrow(Vector2f player_position){
-        printf("Fired 3");
+    void use(Vector2f player_position){
         arrowSprite.setPosition(player_position);
-        printf("Fired 3");
         fired = true;
     }
-    bool fire_arrow(){
+    bool isFired(){
         return fired;
+    }
+    Vector2f get_pos(){
+        return arrowSprite.getPosition();
+
     }
 };
