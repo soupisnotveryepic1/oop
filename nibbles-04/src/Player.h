@@ -28,7 +28,6 @@ public:
                 arrows[i].move_arrow();
                 arrows[i].draw(window);
             }
-            //printf("%d",reload_arrows);
             if (reload_arrows && i == 49){
                 i = 0;
                 reload_arrows = false;
@@ -58,21 +57,21 @@ public:
     void reload(){
         arrows_left = 50;
         arrow_index = 0;
-        printf("Reloaded");
         delete[] arrows;
         arrows = new Arrow[50];
         reload_arrows = true;
+        printf("Reloaded");
     }
+
     void use_arrow(){
-        //for (int i = 0; i < 50; i++)
             if (!arrows[arrow_index].isFired() && arrows_left > 1) {
                 arrows_left--;
                 arrow_fired = true;
                 arrows[arrow_index].use(playerSprite.getPosition());
                 arrow_index++;
-                //break;
             }
     }
+
     int no_arrows_left(){
         return arrows_left;
     }

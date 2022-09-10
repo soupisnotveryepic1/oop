@@ -17,11 +17,9 @@ public:
     Arrow();
     void draw(RenderWindow* window){
         window->draw(arrowSprite);
-
     }
     void move_arrow(){
         arrowSprite.move(this->arrowSpeed * arrow_direction);
-
     }
     void use(Vector2f player_position){
         arrowSprite.setPosition(player_position);
