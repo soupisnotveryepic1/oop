@@ -10,6 +10,7 @@ private:
     Sprite playerSprite;
     Texture playerTexture;
     int health;
+    int maxHealth;
     int speed;
     Arrow* arrows;
     int arrows_left;

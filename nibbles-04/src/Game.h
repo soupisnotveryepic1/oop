@@ -2,6 +2,8 @@
 #pragma once
 #include "Player.h"
 #include "Arrow.h"
+#include "Enemy.h"
+#include <chrono>
 #include <SFML/Graphics.hpp>
 using namespace std;
 using namespace sf;
@@ -11,16 +13,21 @@ class Game{
 private:
     RenderWindow* window;
     Player* player;
+    Enemy* enemies;
     Texture t;
     Sprite s;
+    int i;
 public:
     Game(int height, int width, string name){
         window = new RenderWindow(VideoMode(height,width), name);
         this->window->setFramerateLimit(144);
-        player = new Player(400,400);
+        player = new Player(100,400);
+        enemies = new Enemy[50];
     }
 
     void run(){
+        i = 0;
+        auto start = std::chrono::steady_clock::now();
         t.loadFromFile("C:/textures/background.gif");
         s.setTexture(t);
         s.setPosition(0,0);
@@ -28,8 +35,7 @@ public:
         while (window->isOpen())
         {
             Event event;
-            while (window->pollEvent(event))
-            {
+            while (window->pollEvent(event)){
                 // "close requested" event: we close the window
                 if (event.type == Event::Closed) {
                     window->close();
@@ -57,11 +63,24 @@ public:
                 if (Keyboard::isKeyPressed(Keyboard::R) && player->no_arrows_left() == 1){
                     player->reload();
                 }
+                auto end = std::chrono::steady_clock::now();
+                std::chrono::duration<double> elapsed_seconds = end - start;
+                cout << elapsed_seconds.count() << endl;
+                if (i < 10) {
+                    if (elapsed_seconds.count() > i) {
+                        enemies[i].activate_enemy(Vector2f(1000, rand() % 800), 1, 1, 0.5f);
+                        i++;
+                    }
+                }
+
 
             }
             window->clear();
             window->draw(s);
             player->draw(window);
+            for (int i = 0; i < 50; i++){
+                enemies[i].draw_enemy(window);
+            }
             window->display();
         }
     }
