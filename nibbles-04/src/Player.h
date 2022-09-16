@@ -13,6 +13,7 @@ private:
     int maxHealth;
     int speed;
     int damage;
+    int gold;
     Arrow* arrows;
     int arrows_left;
     int arrow_index;
@@ -94,7 +95,7 @@ public:
     }
     bool hit_by_enemy(Vector2f enemy_position){
         bool hit_enemy = false;
-        if (enemy_position.x >= playerSprite.getPosition().x - 25 && enemy_position.x <= playerSprite.getPosition().x + 25 && enemy_position.y >= playerSprite.getPosition().y - 25 && enemy_position.y <= playerSprite.getPosition().y + 25){
+        if (enemy_position.x >= playerSprite.getPosition().x - 75 && enemy_position.x <= playerSprite.getPosition().x && enemy_position.y >= playerSprite.getPosition().y - 50 && enemy_position.y <= playerSprite.getPosition().y + 25){
             hit_enemy = true;
             return hit_enemy;
         }
@@ -116,6 +117,14 @@ public:
 
     int get_health(){
         return health;
+    }
+
+    int get_gold(){
+        return gold;
+    }
+
+    void change_gold(int amount){
+        gold = gold + amount;
     }
 
 };

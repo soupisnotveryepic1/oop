@@ -10,7 +10,6 @@ private:
     Texture arrowTexture;
     float arrowSpeed;
     bool fired;
-    int damage;
     Vector2f arrow_direction;
     void initTexture();
     void initSprite();
@@ -34,7 +33,7 @@ public:
     }
     bool is_hit(Vector2f enemy_position){
         bool hit = false;
-        if (enemy_position.x >= arrowSprite.getPosition().x - 25 && enemy_position.x <= arrowSprite.getPosition().x + 25 && enemy_position.y >= arrowSprite.getPosition().y - 25 && enemy_position.y <= arrowSprite.getPosition().y + 25){
+        if (enemy_position.x >= arrowSprite.getPosition().x - 25 && enemy_position.x <= arrowSprite.getPosition().x + 25 && enemy_position.y >= arrowSprite.getPosition().y - 75 && enemy_position.y <= arrowSprite.getPosition().y){
             hit = true;
             return hit;
         }

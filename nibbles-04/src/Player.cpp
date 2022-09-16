@@ -24,6 +24,7 @@ Player::Player(int x_pos, int y_pos, int health){
     arrow_index = 0;
     reload_arrows = false;
     damage = 1;
+    gold = 0;
     this->maxHealth = health;
     this->health = health;
 }

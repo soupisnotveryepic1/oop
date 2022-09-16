@@ -28,6 +28,7 @@ public:
     }
     void run(){
         enemy_index = 0;
+        score = 0;
         auto start = std::chrono::steady_clock::now();
         backgroundTexture.loadFromFile("C:/textures/background.gif");
         backgroundSprite.setTexture(backgroundTexture);
@@ -74,6 +75,8 @@ public:
             auto end = std::chrono::steady_clock::now();
             std::chrono::duration<double> elapsed_seconds = end - start;
             //cout << elapsed_seconds.count() << endl;
+
+            // level 1
             if (enemy_index < 10) {
                 if (elapsed_seconds.count() > enemy_index) {
                     enemies[enemy_index].activate_enemy(Vector2f(1000, rand() % 700 + 50), 2, 1, 0.5f);
@@ -84,9 +87,9 @@ public:
                 if(enemies[i].is_alive()){
                     if (player->arrow_hits_enemy(enemies[i].get_position())){
                         enemies[i].take_damage(player->get_damage());
-                        if (enemies[i].get_health() <= 0) {
+                        if (enemies[i].get_health() == 0) {
                             enemies[i].die();
-                            cout << i << " killed by arrow" << endl;
+                            score++;
                         }
                     }
                     if (enemies[i].get_position().x <= 0){
@@ -102,6 +105,7 @@ public:
                     cout << "player die" << endl;
                 }
             }
+            cout << score << endl;
             window->clear();
             window->draw(backgroundSprite);
             player->draw(window);

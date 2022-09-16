@@ -1,0 +1,5 @@
+virtual class???
+entity
+inherits entity:player,projectile,general enemy
+inherits general enemy: enemy, boss
+inherits projectile: arrow,fireball
