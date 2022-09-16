@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
-#include <time.h>
 using namespace sf;
 int main(){
     Game main_game(800,800,"Project");

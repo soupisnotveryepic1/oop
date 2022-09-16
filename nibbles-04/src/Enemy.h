@@ -19,5 +19,28 @@ private:
 public:
     Enemy();
     void activate_enemy(Vector2f spawn_point, int max_hp, int damage, float speed);
-    void draw_enemy(RenderWindow* window);
+    void draw(RenderWindow* window);
+    bool is_hit(Vector2f arrow_coords, Sprite enemySprite);
+    Sprite get_sprite(){
+        return enemySprite;
+    }
+    bool is_alive(){
+        return alive;
+    }
+    Vector2f get_position(){
+        return enemySprite.getPosition();
+    }
+    void take_damage(int player_damage){
+        health = health - player_damage;
+    }
+    int get_health(){
+        return health;
+    }
+    void die(){
+        alive = false;
+    }
+
+    int get_damage(){
+        return attackDamage;
+    }
 };

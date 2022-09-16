@@ -14,24 +14,25 @@ private:
     RenderWindow* window;
     Player* player;
     Enemy* enemies;
-    Texture t;
-    Sprite s;
-    int i;
+    Texture backgroundTexture;
+    Sprite backgroundSprite;
+    int enemy_index;
+    int level;
+    int score;
 public:
     Game(int height, int width, string name){
         window = new RenderWindow(VideoMode(height,width), name);
         this->window->setFramerateLimit(144);
-        player = new Player(100,400);
+        player = new Player(100,400, 5);
         enemies = new Enemy[50];
     }
-
     void run(){
-        i = 0;
+        enemy_index = 0;
         auto start = std::chrono::steady_clock::now();
-        t.loadFromFile("C:/textures/background.gif");
-        s.setTexture(t);
-        s.setPosition(0,0);
-        s.scale(1.5,1.5);
+        backgroundTexture.loadFromFile("C:/textures/background.gif");
+        backgroundSprite.setTexture(backgroundTexture);
+        backgroundSprite.setPosition(0,0);
+        backgroundSprite.scale(1.5,1.5);
         while (window->isOpen())
         {
             Event event;
@@ -55,6 +56,12 @@ public:
                 if (Keyboard::isKeyPressed(Keyboard::U)){
                     player->upgrade_speed();
                 }
+                if (Keyboard::isKeyPressed(Keyboard::Z)){
+                    player->upgrade_damage();
+                }
+                if (Keyboard::isKeyPressed(Keyboard::L)){
+                    level++;
+                }
                 if (event.type == Event::KeyReleased){
                     if (event.key.code == Keyboard::Space) {
                         player->use_arrow();
@@ -63,23 +70,45 @@ public:
                 if (Keyboard::isKeyPressed(Keyboard::R) && player->no_arrows_left() == 1){
                     player->reload();
                 }
-                auto end = std::chrono::steady_clock::now();
-                std::chrono::duration<double> elapsed_seconds = end - start;
-                cout << elapsed_seconds.count() << endl;
-                if (i < 10) {
-                    if (elapsed_seconds.count() > i) {
-                        enemies[i].activate_enemy(Vector2f(1000, rand() % 800), 1, 1, 0.5f);
-                        i++;
+            }
+            auto end = std::chrono::steady_clock::now();
+            std::chrono::duration<double> elapsed_seconds = end - start;
+            //cout << elapsed_seconds.count() << endl;
+            if (enemy_index < 10) {
+                if (elapsed_seconds.count() > enemy_index) {
+                    enemies[enemy_index].activate_enemy(Vector2f(1000, rand() % 700 + 50), 2, 1, 0.5f);
+                    enemy_index++;
+                }
+            }
+            for (int i = 0; i < 10; i++){
+                if(enemies[i].is_alive()){
+                    if (player->arrow_hits_enemy(enemies[i].get_position())){
+                        enemies[i].take_damage(player->get_damage());
+                        if (enemies[i].get_health() <= 0) {
+                            enemies[i].die();
+                            cout << i << " killed by arrow" << endl;
+                        }
+                    }
+                    if (enemies[i].get_position().x <= 0){
+                        enemies[i].die();
+                        player->take_damage(enemies[i].get_damage());
+                    }
+                    if (player->hit_by_enemy(enemies[i].get_position())){
+                        enemies[i].die();
+                        player->take_damage(enemies[i].get_damage());
                     }
                 }
-
-
+                if (player->get_health() == 0){
+                    cout << "player die" << endl;
+                }
             }
             window->clear();
-            window->draw(s);
+            window->draw(backgroundSprite);
             player->draw(window);
             for (int i = 0; i < 50; i++){
-                enemies[i].draw_enemy(window);
+                if (enemies[i].is_alive()) {
+                    enemies[i].draw(window);
+                }
             }
             window->display();
         }
