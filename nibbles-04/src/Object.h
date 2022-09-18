@@ -11,4 +11,5 @@ protected:
 public:
     virtual Vector2f get_position() = 0;
     virtual void draw() = 0;
+
 };

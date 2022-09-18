@@ -20,9 +20,8 @@ Enemy::Enemy() {
 
 
 void Enemy::activate_enemy(Vector2f spawn_point, int max_hp, int damage, float speed) {
-    this->maxHealth = max_hp;
     this->health = max_hp;
-    this->attackDamage = damage;
+    this->damage = damage;
     this->speed = speed;
     alive = true;
     enemySprite.setPosition(spawn_point);

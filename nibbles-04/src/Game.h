@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "Fireball.h"
 #include "Boss.h"
+#include "Object.h"
 #include <chrono>
 #include <SFML/Graphics.hpp>
 using namespace std;
@@ -150,7 +151,7 @@ public:
                 }
                 for (int i = 0; i < 50; i++) {
                     if (enemies[i].is_alive()) {
-                        if (player->arrow_hits_enemy(enemies[i].get_position())) {
+                        if (player->successful_hit(enemies[i].get_position())) {
                             enemies[i].take_damage(player->get_damage());
                             if (enemies[i].get_health() <= 0) {
                                 enemies[i].die();
@@ -174,7 +175,7 @@ public:
                         }
                     }
                     if (boss->is_alive()) {
-                        if (player->arrow_hits_enemy(boss->get_position())) {
+                        if (player->successful_hit(boss->get_position())) {
                             boss->take_damage(boss->get_damage());
                             if (boss->get_health() <= 0) {
                                 boss->die();
@@ -183,7 +184,7 @@ public:
                                 enemy_number++;
                             }
                         }
-                        if (boss->arrow_hits_player(player->get_position())){
+                        if (boss->successful_hit(player->get_position())){
                             player->take_damage(boss->get_damage());
                         }
                         if (boss->get_position().x <= 0) {

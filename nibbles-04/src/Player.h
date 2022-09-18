@@ -1,20 +1,18 @@
 #include <SFML/Graphics.hpp>
 #pragma once
-#include "Entity.h"
+#include "Character.h"
 #include "Arrow.h"
+#include "Object.h"
+#include "Character.h"
 using namespace std;
 using namespace sf;
 
-class Player {
+class Player : public Character{
 private:
     Sprite playerSprite;
     Texture playerTexture;
-    int health;
-    int maxHealth;
-    int speed;
-    int damage;
     int gold;
-    Arrow* arrows;
+    Projectile* arrows;
     int arrows_left;
     int arrow_index;
     bool arrow_fired;
@@ -27,8 +25,8 @@ public:
     void draw(RenderWindow* window) {
         window->draw(playerSprite);
         for (int i = 0; i < 50; i++) {
-            if (arrows_left > 0 && arrows[i].isFired()) {
-                arrows[i].move_arrow();
+            if (arrows_left > 0 && arrows[i].is_fired()) {
+                arrows[i].move_projectile();
                 arrows[i].draw(window);
             }
             if (reload_arrows && i == 49) {
@@ -68,7 +66,7 @@ public:
     }
 
     void use_arrow() {
-        if (!arrows[arrow_index].isFired() && arrows_left > 1) {
+        if (!arrows[arrow_index].is_fired() && arrows_left > 1) {
             arrows_left--;
             arrow_fired = true;
             arrows[arrow_index].use(playerSprite.getPosition());
@@ -80,10 +78,10 @@ public:
         return arrows_left;
     }
 
-    bool arrow_hits_enemy(Vector2f enemy_position) {
+    bool successful_hit(Vector2f enemy_position) {
         bool arrow_hit = false;
         for (int i = 0; i < 50; i++) {
-            if (arrows[i].is_hit(enemy_position) && arrows[i].isFired()) {
+            if (arrows[i].is_hit(enemy_position) && arrows[i].is_fired()) {
                 arrows[i].hit_target();
                 return true;
             }
@@ -100,17 +98,12 @@ public:
 
     }
 
-    int get_damage() {
-        return damage;
-    }
+
 
     void take_damage(int enemy_damage) {
         health = health - enemy_damage;
     }
 
-    int get_health() {
-        return health;
-    }
 
     int get_gold() {
         return gold;

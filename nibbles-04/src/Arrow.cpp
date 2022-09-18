@@ -4,19 +4,19 @@ using namespace sf;
 #include "Arrow.h"
 
 void Arrow::initTexture() {
-    this->arrowTexture.loadFromFile("C:/textures/arrow.png");
+    this->texture.loadFromFile("C:/textures/arrow.png");
 }
 
 void Arrow::initSprite() {
-    this->arrowSprite.setTexture(arrowTexture);
-    this->arrowSprite.scale(0.1f,0.1f);
+    this->sprite.setTexture(texture);
+    this->sprite.scale(0.1f,0.1f);
 }
 
 Arrow::Arrow() {
-    this->initTexture();
-    this->initSprite();
-    this->arrow_direction.x = 1;
-    this->arrow_direction.y = 0;
-    this->arrowSpeed = 2;
+    initTexture();
+    initSprite();
+    direction.x = 1;
+    direction.y = 0;
+    speed = 2;
     fired = false;
 }

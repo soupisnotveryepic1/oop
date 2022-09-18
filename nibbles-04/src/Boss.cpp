@@ -19,13 +19,12 @@ Boss::Boss(){
     fireballs = new Fireball[100];
     fire_index = 0;
     fired = false;
-    attackDamage = 3;
+    damage = 3;
 }
 
 void Boss::activate_enemy(Vector2f spawn_point, int max_hp, int damage, float speed) {
-    this->maxHealth = max_hp;
     this->health = max_hp;
-    this->attackDamage = damage;
+    this->damage = damage;
     this->speed = speed;
     alive = true;
     bossSprite.setPosition(spawn_point);
@@ -37,8 +36,8 @@ void Boss::draw(RenderWindow* window) {
         window->draw(bossSprite);
     }
     for (int i = 0; i < 100; i++) {
-        if (fireballs[i].isFired()) {
-            fireballs[i].move_fireball();
+        if (fireballs[i].is_fired()) {
+            fireballs[i].move_projectile();
             fireballs[i].draw(window);
         }
     }

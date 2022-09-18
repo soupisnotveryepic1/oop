@@ -1,17 +1,14 @@
 #include <SFML/Graphics.hpp>
 #pragma once
 #include "Fireball.h"
+#include "Character.h"
 using namespace sf;
 
-class Boss {
+class Boss : public Character{
 private:
-    int health;
-    int maxHealth;
-    int attackDamage;
     int fire_index;
-    float speed;
     bool fired;
-    Fireball* fireballs;
+    Projectile* fireballs;
     Sprite bossSprite;
     Texture bossTexture;
     bool alive;
@@ -31,28 +28,22 @@ public:
     void take_damage(int player_damage) {
         health = health - player_damage;
     }
-    int get_health() {
-        return health;
-    }
+
     void die() {
         alive = false;
     }
 
-    int get_damage() {
-        return attackDamage;
-    }
-
     void use_fireball(){
-        if (!fireballs[fire_index].isFired()) {
+        if (!fireballs[fire_index].is_fired()) {
             fired = true;
             fireballs[fire_index].use(bossSprite.getPosition());
             fire_index++;
         }
     }
-    bool arrow_hits_player(Vector2f player_position){
+    bool successful_hit(Vector2f player_position){
         bool arrow_hit = false;
         for (int i = 0; i < 50; i++) {
-            if (fireballs[i].is_hit(player_position) && fireballs[i].isFired()) {
+            if (fireballs[i].is_hit(player_position) && fireballs[i].is_fired()) {
                 fireballs[i].hit_target();
                 return true;
             }

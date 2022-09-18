@@ -4,20 +4,21 @@
 using namespace std;
 using namespace sf;
 
+
 void Fireball::initTexture() {
-    fireTexture.loadFromFile("C:/textures/fireball.png");
+    texture.loadFromFile("C:/textures/fireball.png");
 }
 
 void Fireball::initSprite() {
-    fireSprite.setTexture(fireTexture);
-    fireSprite.scale(-0.05f,0.05f);
+    sprite.setTexture(texture);
+    sprite.scale(-0.05f,0.05f);
 }
 
 Fireball::Fireball() {
-    this->initTexture();
-    this->initSprite();
-    this->fire_direction.x = -1;
-    this->fire_direction.y = 0;
-    this->fireSpeed = 2;
+    initTexture();
+    initSprite();
+    direction.x = -1;
+    direction.y = 0;
+    speed = 2;
     fired = false;
 }
