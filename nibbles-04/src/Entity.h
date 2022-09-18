@@ -3,8 +3,9 @@
 #include <iostream>
 using namespace std;
 using namespace sf;
+#include "Object.h"
 
-class Entity{
+class Entity : public Object{
 protected:
 
 public:
