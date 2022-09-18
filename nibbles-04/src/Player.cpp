@@ -8,12 +8,12 @@ void Player::initTexture() {
     playerTexture.loadFromFile("C:/textures/sprite.png");
 }
 
-void Player::initSprite(){
+void Player::initSprite() {
     playerSprite.setTexture(playerTexture);
     playerSprite.scale(-1.0f,1.0f);
 }
 
-Player::Player(int x_pos, int y_pos, int health){
+Player::Player(int x_pos, int y_pos, int health) {
     playerSprite.setPosition(x_pos,y_pos);
     initTexture();
     initSprite();
@@ -29,7 +29,7 @@ Player::Player(int x_pos, int y_pos, int health){
     this->health = health;
 }
 
-Player::~Player(){
+Player::~Player() {
 
 }
 

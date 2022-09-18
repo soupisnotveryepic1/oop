@@ -7,12 +7,12 @@ void Arrow::initTexture() {
     this->arrowTexture.loadFromFile("C:/textures/arrow.png");
 }
 
-void Arrow::initSprite(){
+void Arrow::initSprite() {
     this->arrowSprite.setTexture(arrowTexture);
     this->arrowSprite.scale(0.1f,0.1f);
 }
 
-Arrow::Arrow(){
+Arrow::Arrow() {
     this->initTexture();
     this->initSprite();
     this->arrow_direction.x = 1;

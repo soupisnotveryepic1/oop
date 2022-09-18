@@ -3,7 +3,7 @@ project(nibbles_04)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(nibbles_04 src/test.cpp src/Player.cpp src/Arrow.cpp src/Enemy.cpp)
+add_executable(nibbles_04 src/test.cpp src/Player.cpp src/Arrow.cpp src/Enemy.cpp src/Boss.cpp src/Fireball.cpp)
 
 include_directories(headers /usr/include c:/SFML/include)
 

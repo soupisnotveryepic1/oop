@@ -3,11 +3,11 @@
 using namespace std;
 using namespace sf;
 
-void Enemy::initTexture(){
+void Enemy::initTexture() {
     this->enemyTexture.loadFromFile("C:/textures/enemySprite.gif");
 }
 
-void Enemy::initSprite(){
+void Enemy::initSprite() {
     this->enemySprite.setTexture(this->enemyTexture);
     this->enemySprite.scale(1.5f,1.5f);
 }
@@ -28,7 +28,7 @@ void Enemy::activate_enemy(Vector2f spawn_point, int max_hp, int damage, float s
     enemySprite.setPosition(spawn_point);
 }
 
-void Enemy::draw(RenderWindow* window){
+void Enemy::draw(RenderWindow* window) {
     if (alive) {
         enemySprite.move(-speed, 0);
         window->draw(enemySprite);

@@ -5,7 +5,7 @@
 using namespace std;
 using namespace sf;
 
-class Player{
+class Player {
 private:
     Sprite playerSprite;
     Texture playerTexture;
@@ -24,44 +24,41 @@ private:
 public:
     Player(int x_pos, int y_pos, int health);
     ~Player();
-    void draw(RenderWindow* window){
+    void draw(RenderWindow* window) {
         window->draw(playerSprite);
         for (int i = 0; i < 50; i++) {
             if (arrows_left > 0 && arrows[i].isFired()) {
                 arrows[i].move_arrow();
                 arrows[i].draw(window);
             }
-            if (reload_arrows && i == 49){
+            if (reload_arrows && i == 49) {
                 i = 0;
                 reload_arrows = false;
             }
         }
 
     }
-    void move_right(){
+    void move_right() {
         playerSprite.move(speed,0);
     }
-    void move_left(){
+    void move_left() {
         playerSprite.move(-speed,0);
     }
-    void move_up(){
+    void move_up() {
         playerSprite.move(0,-speed);
     }
-    void move_down(){
+    void move_down() {
         playerSprite.move(0,speed);
     }
-    void upgrade_speed(){
+    void upgrade_speed() {
         speed++;
         cout << "speed increased to " << speed << endl;
     }
-    void upgrade_damage(){
+    void upgrade_damage() {
         damage++;
-        cout << "damage increased to " << speed << endl;
+        cout << "damage increased to " << damage << endl;
     }
-    int get_speed(){
-        return speed;
-    }
-    void reload(){
+    void reload() {
         arrows_left = 50;
         arrow_index = 0;
         delete[] arrows;
@@ -70,7 +67,7 @@ public:
         printf("Reloaded");
     }
 
-    void use_arrow(){
+    void use_arrow() {
         if (!arrows[arrow_index].isFired() && arrows_left > 1) {
             arrows_left--;
             arrow_fired = true;
@@ -79,23 +76,23 @@ public:
         }
     }
 
-    int no_arrows_left(){
+    int no_arrows_left() {
         return arrows_left;
     }
 
-    bool arrow_hits_enemy(Vector2f enemy_position){
+    bool arrow_hits_enemy(Vector2f enemy_position) {
         bool arrow_hit = false;
-        for (int i = 0; i < 50; i++){
-            if (arrows[i].is_hit(enemy_position) && arrows[i].isFired()){
-                arrows[i].hit_enemy();
+        for (int i = 0; i < 50; i++) {
+            if (arrows[i].is_hit(enemy_position) && arrows[i].isFired()) {
+                arrows[i].hit_target();
                 return true;
             }
         }
         return arrow_hit;
     }
-    bool hit_by_enemy(Vector2f enemy_position){
+    bool hit_by_enemy(Vector2f enemy_position) {
         bool hit_enemy = false;
-        if (enemy_position.x >= playerSprite.getPosition().x - 75 && enemy_position.x <= playerSprite.getPosition().x && enemy_position.y >= playerSprite.getPosition().y - 50 && enemy_position.y <= playerSprite.getPosition().y + 25){
+        if (enemy_position.x >= playerSprite.getPosition().x - 75 && enemy_position.x <= playerSprite.getPosition().x && enemy_position.y >= playerSprite.getPosition().y - 50 && enemy_position.y <= playerSprite.getPosition().y + 25) {
             hit_enemy = true;
             return hit_enemy;
         }
@@ -103,28 +100,28 @@ public:
 
     }
 
-    Vector2f get_position(){
-        return playerSprite.getPosition();
-    }
-
-    int get_damage(){
+    int get_damage() {
         return damage;
     }
 
-    void take_damage(int enemy_damage){
+    void take_damage(int enemy_damage) {
         health = health - enemy_damage;
     }
 
-    int get_health(){
+    int get_health() {
         return health;
     }
 
-    int get_gold(){
+    int get_gold() {
         return gold;
     }
 
-    void change_gold(int amount){
+    void change_gold(int amount) {
         gold = gold + amount;
+    }
+
+    Vector2f get_position(){
+        return playerSprite.getPosition();
     }
 
 };
