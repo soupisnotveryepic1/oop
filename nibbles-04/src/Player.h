@@ -98,13 +98,6 @@ public:
 
     }
 
-
-
-    void take_damage(int enemy_damage) {
-        health = health - enemy_damage;
-    }
-
-
     int get_gold() {
         return gold;
     }

@@ -11,13 +11,12 @@
 using namespace std;
 using namespace sf;
 
-
 class Game {
 private:
     RenderWindow* window;
     Player* player;
     Enemy* enemies;
-    Boss* boss;
+    Enemy* boss;
     Texture backgroundTexture;
     Sprite backgroundSprite;
     int enemy_index;
@@ -63,7 +62,7 @@ public:
         backgroundSprite.setPosition(0,0);
         backgroundSprite.scale(1.5,1.5);
         string instruction;
-        instruction = "Instructions: ";
+        instruction = "Instructions: \n Press Space to shoot arrows";
         auto start = std::chrono::steady_clock::now();
         while (window->isOpen())
         {
@@ -139,13 +138,13 @@ public:
                         enemy_index++;
                     }
                 }
-                if (elapsed_seconds.count() - a > 80 && enemy_index == 50) { // wave 3
+                if (elapsed_seconds.count() - a >= 0 && enemy_index == 1) { // boss spawn
                     if (!boss->is_alive()) {
-                        boss->activate_enemy(Vector2f(900, 400), 50, 3, 0.3f);
+                        boss->activate_enemy(Vector2f(800, 300), 50, 3, 0.3f);
                         enemy_index++;
                     }
                 }
-                if (elapsed_seconds.count() - a <= 80 + 0.3 * fireball_index && elapsed_seconds.count() >= 80 + 0.3 * (fireball_index - 0.5)) {
+                if (elapsed_seconds.count() - a <= 80 + 0.3 * (fireball_index) && elapsed_seconds.count() >= 80 + 0.3 * (fireball_index - 0.5)) {
                     boss->use_fireball();
                     fireball_index++;
                 }
@@ -175,7 +174,7 @@ public:
                         }
                     }
                     if (boss->is_alive()) {
-                        if (player->successful_hit(boss->get_position())) {
+                        if (player->successful_hit(Vector2f(boss->get_position().x, boss->get_position().y + 60))) {
                             boss->take_damage(boss->get_damage());
                             if (boss->get_health() <= 0) {
                                 boss->die();

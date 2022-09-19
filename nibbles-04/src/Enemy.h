@@ -7,25 +7,18 @@ using namespace std;
 using namespace sf;
 
 class Enemy : public Character{
-private:
-    Sprite enemySprite;
-    Texture enemyTexture;
-    bool alive;
+protected:
+    Sprite sprite;
+    Texture texture;
     void initSprite();
     void initTexture();
 public:
     Enemy();
     void activate_enemy(Vector2f spawn_point, int max_hp, int damage, float speed);
-    void draw(RenderWindow* window);
-    bool is_hit(Vector2f arrow_coords, Sprite enemySprite);
-    bool is_alive() {
-        return alive;
-    }
+    virtual void draw(RenderWindow* window);
     Vector2f get_position() {
-        return enemySprite.getPosition();
+        return sprite.getPosition();
     }
-    void die() {
-        alive = false;
-    }
-
+    virtual void use_fireball(){}
+    virtual bool successful_hit(Vector2f position){}
 };

@@ -33,5 +33,4 @@ public:
     }
     virtual bool is_hit(Vector2f target_position) = 0;
 
-
 };

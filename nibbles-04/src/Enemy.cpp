@@ -4,12 +4,12 @@ using namespace std;
 using namespace sf;
 
 void Enemy::initTexture() {
-    this->enemyTexture.loadFromFile("C:/textures/enemySprite.gif");
+    this->texture.loadFromFile("C:/textures/enemySprite.gif");
 }
 
 void Enemy::initSprite() {
-    this->enemySprite.setTexture(this->enemyTexture);
-    this->enemySprite.scale(1.5f,1.5f);
+    this->sprite.setTexture(this->texture);
+    this->sprite.scale(1.5f,1.5f);
 }
 
 Enemy::Enemy() {
@@ -24,13 +24,13 @@ void Enemy::activate_enemy(Vector2f spawn_point, int max_hp, int damage, float s
     this->damage = damage;
     this->speed = speed;
     alive = true;
-    enemySprite.setPosition(spawn_point);
+    sprite.setPosition(spawn_point);
 }
 
 void Enemy::draw(RenderWindow* window) {
     if (alive) {
-        enemySprite.move(-speed, 0);
-        window->draw(enemySprite);
+        sprite.move(-speed, 0);
+        window->draw(sprite);
     }
 }
 
