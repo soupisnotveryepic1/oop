@@ -29,6 +29,10 @@ public:
         return alive;
     }
 
+    float get_speed(){
+        return speed;
+    }
+
     void die() {
         alive = false;
     }

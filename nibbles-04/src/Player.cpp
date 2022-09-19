@@ -17,7 +17,7 @@ Player::Player(int x_pos, int y_pos, int health) {
     playerSprite.setPosition(x_pos,y_pos);
     initTexture();
     initSprite();
-    speed = 7;
+    speed = 5;
     arrows_left = 50;
     arrows = new Arrow[50];
     arrow_fired = false;

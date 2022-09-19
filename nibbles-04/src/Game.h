@@ -27,6 +27,8 @@ private:
     double a;
     Text gold_text;
     Text instructions_text;
+    Text speed_text;
+    Text damage_text;
     Font font;
     Sprite goldSprite;
     Texture goldTexture;
@@ -43,6 +45,12 @@ public:
         gold_text.setFont(font);
         gold_text.setColor(sf::Color::Yellow);
         gold_text.setCharacterSize(20);
+        speed_text.setFont(font);
+        speed_text.setColor(sf::Color::Cyan);
+        speed_text.setCharacterSize(20);
+        damage_text.setFont(font);
+        damage_text.setColor(sf::Color::Magenta);
+        damage_text.setCharacterSize(20);
         instructions_text.setFont(font);
         instructions_text.setColor(sf::Color::White);
         instructions_text.setCharacterSize(100);
@@ -60,7 +68,7 @@ public:
         backgroundTexture.loadFromFile("C:/textures/background.gif");
         backgroundSprite.setTexture(backgroundTexture);
         backgroundSprite.setPosition(0,0);
-        backgroundSprite.scale(1.5,1.5);
+        backgroundSprite.scale(1.44,1.44);
         string instruction;
         instruction = "Instructions: \n Press Space to shoot arrows";
         auto start = std::chrono::steady_clock::now();
@@ -73,30 +81,29 @@ public:
                     window->close();
                 }
                 if (level != 0) {
-                    if (Keyboard::isKeyPressed(Keyboard::Up)) {
+                    if (Keyboard::isKeyPressed(Keyboard::Up) && player->get_position().y > 0) {
                         player->move_up();
                     }
-                    if (Keyboard::isKeyPressed(Keyboard::Down)) {
+                    if (Keyboard::isKeyPressed(Keyboard::Down) && player->get_position().y < 650) {
                         player->move_down();
                     }
-                    if (Keyboard::isKeyPressed(Keyboard::Right)) {
+                    if (Keyboard::isKeyPressed(Keyboard::Right) && player->get_position().x < 800) {
                         player->move_right();
                     }
-                    if (Keyboard::isKeyPressed(Keyboard::Left)) {
+                    if (Keyboard::isKeyPressed(Keyboard::Left) && player->get_position().x > 70) {
                         player->move_left();
                     }
-                    if (Keyboard::isKeyPressed(Keyboard::U) && player->get_gold() >= 200) {
-                        player->upgrade_speed();
-                        player->change_gold(-200);
-                    }
-
                     if (event.type == Event::KeyReleased) {
                         if (event.key.code == Keyboard::Space) {
                             player->use_arrow();
                         }
-                        if (event.key.code == Keyboard::Z && player->get_gold() >= 400){
+                        if (event.key.code == Keyboard::Z && player->get_gold() >= 500){
                             player->upgrade_damage();
-                            player->change_gold(-400);
+                            player->change_gold(-500);
+                        }
+                        if (event.key.code == Keyboard::U && player->get_gold() >= 350){
+                            player->upgrade_speed();
+                            player->change_gold(-350);
                         }
                     }
                     if (Keyboard::isKeyPressed(Keyboard::R) && player->no_arrows_left() == 1) {
@@ -122,19 +129,19 @@ public:
                 //cout << elapsed_seconds.count() - a << endl;
                 if (enemy_index < 10) { // wave 1
                     if (elapsed_seconds.count() - a > enemy_index && !enemies[enemy_index].is_alive()) {
-                        enemies[enemy_index].activate_enemy(Vector2f(1000, rand() % 600 + 100), 2, 1, 0.5f);
+                        enemies[enemy_index].activate_enemy(Vector2f(1000, rand() % 550 + 100), 2, 1, 0.5f);
                         enemy_index++;
                     }
                 }
                 if (elapsed_seconds.count() - a > 25 && enemy_index < 30){ // wave 2
                     if (elapsed_seconds.count() - a > enemy_index + 15 && !enemies[enemy_index].is_alive()) {
-                        enemies[enemy_index].activate_enemy(Vector2f(1000, rand() % 600 + 100), 5, 2, 0.75f);
+                        enemies[enemy_index].activate_enemy(Vector2f(1000, rand() % 550 + 100), 5, 2, 0.75f);
                         enemy_index++;
                     }
                 }
                 if (elapsed_seconds.count() - a > 60 && enemy_index < 50){ // wave 3
                     if (elapsed_seconds.count() - a > enemy_index + 30 && !enemies[enemy_index].is_alive()) {
-                        enemies[enemy_index].activate_enemy(Vector2f(1000, rand() % 600 + 100), 8, 3, 0.9f);
+                        enemies[enemy_index].activate_enemy(Vector2f(1000, rand() % 550 + 100), 8, 3, 0.9f);
                         enemy_index++;
                     }
                 }
@@ -144,7 +151,7 @@ public:
                         enemy_index++;
                     }
                 }
-                if (elapsed_seconds.count() - a <= 80 + 0.3 * (fireball_index) && elapsed_seconds.count() >= 80 + 0.3 * (fireball_index - 0.5)) {
+                if (elapsed_seconds.count() - a <= 0.3 * (fireball_index + 1) && elapsed_seconds.count() >= 0.3 * (fireball_index - 0.5)) {
                     boss->use_fireball();
                     fireball_index++;
                 }
@@ -167,6 +174,7 @@ public:
                         if (player->hit_by_enemy(enemies[i].get_position())) {
                             enemies[i].die();
                             player->take_damage(enemies[i].get_damage());
+                            player->change_gold(50);
                             enemy_number++;
                         }
                         if (player->get_health() == 0) {
@@ -216,12 +224,21 @@ public:
             }
             string gold_display;
             gold_display = to_string(player->get_gold());
+            string speed_display;
+            speed_display = "Speed: " + to_string(int(player->get_speed())) + " Cost to Upgrade: 350  Upgrade:U";
+            string damage_display = "Damage: " + to_string(int(player->get_damage())) + " Cost to Upgrade: 500  Upgrade:Z";
+            speed_text.setPosition(120,770);
+            speed_text.setString(speed_display);
+            damage_text.setPosition(108,745);
+            damage_text.setString(damage_display);
             gold_text.setPosition(50,770);
             gold_text.setString(gold_display);
             if (level == 0) {
                 window->draw(instructions_text);
             }
             window->draw(gold_text);
+            window->draw(speed_text);
+            window->draw(damage_text);
             window->draw(goldSprite);
             window->display();
         }

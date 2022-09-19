@@ -6,12 +6,12 @@ using namespace sf;
 
 
 void Fireball::initTexture() {
-    texture.loadFromFile("C:/textures/fireball.png");
+    texture.loadFromFile("C:/textures/sword.png");
 }
 
 void Fireball::initSprite() {
     sprite.setTexture(texture);
-    sprite.scale(-0.05f,0.05f);
+    sprite.scale(-0.08f,0.08f);
 }
 
 Fireball::Fireball() {

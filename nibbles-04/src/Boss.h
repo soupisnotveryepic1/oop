@@ -14,7 +14,7 @@ public:
     void draw(RenderWindow* window);
     void use_fireball(){
         if (!fireballs[fire_index].is_fired()) {
-            fireballs[fire_index].use(sprite.getPosition());
+            fireballs[fire_index].use(Vector2f(sprite.getPosition().x + 55, sprite.getPosition().y + 20));
             fire_index++;
         }
     }
