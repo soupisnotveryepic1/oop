@@ -10,8 +10,8 @@ void Boss::resize() {
 Boss::Boss(){
     resize();
     alive = false;
-    fireballs = new Fireball[100];
-    fire_index = 0;
+    swords = new Sword[100];
+    sword_index = 0;
     damage = 3;
 }
 
@@ -21,9 +21,9 @@ void Boss::draw(RenderWindow* window) {
         window->draw(sprite);
     }
     for (int i = 0; i < 100; i++) {
-        if (fireballs[i].is_fired()) {
-            fireballs[i].move_projectile();
-            fireballs[i].draw(window);
+        if (swords[i].is_fired()) {
+            swords[i].move_projectile();
+            swords[i].draw(window);
         }
     }
 }

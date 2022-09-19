@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 using namespace sf;
-#include "Object.h"
+
 
 class Character{
 protected:

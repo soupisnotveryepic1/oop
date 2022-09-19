@@ -3,9 +3,8 @@
 #include "Player.h"
 #include "Arrow.h"
 #include "Enemy.h"
-#include "Fireball.h"
+#include "Sword.h"
 #include "Boss.h"
-#include "Object.h"
 #include <chrono>
 #include <SFML/Graphics.hpp>
 using namespace std;
@@ -24,7 +23,7 @@ private:
     int fireball_index;
     int level;
     int score;
-    double a;
+    double level_time;
     Text gold_text;
     Text instructions_text;
     Text speed_text;
@@ -58,13 +57,13 @@ public:
         goldSprite.setTexture(goldTexture);
         goldSprite.scale(0.12f,0.12f);
         goldSprite.setPosition(20,770);
-    }
-    void run() {
         enemy_index = 0;
         score = 0;
         enemy_number = 0;
         fireball_index = 0;
         level = 0;
+    }
+    void run() {
         backgroundTexture.loadFromFile("C:/textures/background.gif");
         backgroundSprite.setTexture(backgroundTexture);
         backgroundSprite.setPosition(0,0);
@@ -111,11 +110,11 @@ public:
                     }
                 }
             }
-            if (Keyboard::isKeyPressed(Keyboard::L) && level == 0 || Keyboard::isKeyPressed(Keyboard::L) && enemy_number == 10 && level == 1 || Keyboard::isKeyPressed(Keyboard::L) && enemy_number == 30 && level == 2) {
+            if (Keyboard::isKeyPressed(Keyboard::L) && level == 0) {
                 level++;
                 auto inst = std::chrono::steady_clock::now();
-                std::chrono::duration<double> i = inst - start;
-                a = i.count();
+                std::chrono::duration<double> time_to_start = inst - start;
+                level_time = time_to_start.count();
             }
             auto end = std::chrono::steady_clock::now();
             std::chrono::duration<double> elapsed_seconds = end - start;
@@ -128,30 +127,30 @@ public:
             if (level == 1) {
                 //cout << elapsed_seconds.count() - a << endl;
                 if (enemy_index < 10) { // wave 1
-                    if (elapsed_seconds.count() - a > enemy_index && !enemies[enemy_index].is_alive()) {
+                    if (elapsed_seconds.count() - level_time > enemy_index && !enemies[enemy_index].is_alive()) {
                         enemies[enemy_index].activate_enemy(Vector2f(1000, rand() % 550 + 100), 2, 1, 0.5f);
                         enemy_index++;
                     }
                 }
-                if (elapsed_seconds.count() - a > 25 && enemy_index < 30){ // wave 2
-                    if (elapsed_seconds.count() - a > enemy_index + 15 && !enemies[enemy_index].is_alive()) {
+                if (elapsed_seconds.count() - level_time > 25 && enemy_index < 30){ // wave 2
+                    if (elapsed_seconds.count() - level_time > enemy_index + 15 && !enemies[enemy_index].is_alive()) {
                         enemies[enemy_index].activate_enemy(Vector2f(1000, rand() % 550 + 100), 5, 2, 0.75f);
                         enemy_index++;
                     }
                 }
-                if (elapsed_seconds.count() - a > 60 && enemy_index < 50){ // wave 3
-                    if (elapsed_seconds.count() - a > enemy_index + 30 && !enemies[enemy_index].is_alive()) {
+                if (elapsed_seconds.count() - level_time > 60 && enemy_index < 50){ // wave 3
+                    if (elapsed_seconds.count() - level_time > enemy_index + 30 && !enemies[enemy_index].is_alive()) {
                         enemies[enemy_index].activate_enemy(Vector2f(1000, rand() % 550 + 100), 8, 3, 0.9f);
                         enemy_index++;
                     }
                 }
-                if (elapsed_seconds.count() - a >= 0 && enemy_index == 1) { // boss spawn
+                if (elapsed_seconds.count() - level_time >= 0 && enemy_index == 1) { // boss spawn
                     if (!boss->is_alive()) {
-                        boss->activate_enemy(Vector2f(800, 300), 50, 3, 0.3f);
+                        boss->activate_enemy(Vector2f(800, 300), 200, 3, 0.3f);
                         enemy_index++;
                     }
                 }
-                if (elapsed_seconds.count() - a <= 0.3 * (fireball_index + 1) && elapsed_seconds.count() >= 0.3 * (fireball_index - 0.5)) {
+                if (elapsed_seconds.count() - level_time <= 0.3 * (fireball_index + 1) && elapsed_seconds.count() >= 0.3 * (fireball_index - 0.5)) {
                     boss->use_fireball();
                     fireball_index++;
                 }

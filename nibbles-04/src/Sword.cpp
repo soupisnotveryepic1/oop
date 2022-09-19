@@ -1,20 +1,20 @@
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
-#include "Fireball.h"
+#include "Sword.h"
 using namespace std;
 using namespace sf;
 
 
-void Fireball::initTexture() {
+void Sword::initTexture() {
     texture.loadFromFile("C:/textures/sword.png");
 }
 
-void Fireball::initSprite() {
+void Sword::initSprite() {
     sprite.setTexture(texture);
     sprite.scale(-0.08f,0.08f);
 }
 
-Fireball::Fireball() {
+Sword::Sword() {
     initTexture();
     initSprite();
     direction.x = -1;
