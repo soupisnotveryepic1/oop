@@ -34,7 +34,7 @@ private:
 public:
     Game(int height, int width, string name) {
         window = new RenderWindow(VideoMode(height,width), name);
-        this->window->setFramerateLimit(144);
+        window->setFramerateLimit(144);
         player = new Player(100,400, 5);
         boss = new Boss;
         enemies = new Enemy[50];
@@ -42,16 +42,16 @@ public:
             cout << "font not found" << endl;
         }
         gold_text.setFont(font);
-        gold_text.setColor(sf::Color::Yellow);
+        gold_text.setFillColor(sf::Color::Yellow);
         gold_text.setCharacterSize(20);
         speed_text.setFont(font);
-        speed_text.setColor(sf::Color::Cyan);
+        speed_text.setFillColor(sf::Color::Cyan);
         speed_text.setCharacterSize(20);
         damage_text.setFont(font);
-        damage_text.setColor(sf::Color::Magenta);
+        damage_text.setFillColor(sf::Color::Magenta);
         damage_text.setCharacterSize(20);
         instructions_text.setFont(font);
-        instructions_text.setColor(sf::Color::White);
+        instructions_text.setFillColor(sf::Color::White);
         instructions_text.setCharacterSize(100);
         goldTexture.loadFromFile("C:/textures/gold.png");
         goldSprite.setTexture(goldTexture);
