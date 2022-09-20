@@ -32,6 +32,7 @@ void Boss::use_sword() {
         swords[sword_index].use(Vector2f(sprite.getPosition().x + 55, sprite.getPosition().y + 20));
         sword_index++;
     }
+    cout << sword_index << endl;
 }
 
 bool Boss::successful_hit(Vector2f player_position) {

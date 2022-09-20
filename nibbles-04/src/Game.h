@@ -20,7 +20,7 @@ private:
     Sprite backgroundSprite;
     int enemy_index;
     int enemy_number;
-    int fireball_index;
+    int sword_index;
     int level;
     int score;
     double level_time;
@@ -68,7 +68,7 @@ public:
         enemy_index = 0;
         score = 0;
         enemy_number = 0;
-        fireball_index = 0;
+        sword_index = 0;
         level = 0;
     }
 
@@ -160,9 +160,9 @@ public:
                         enemy_index++;
                     }
                 }
-                if (elapsed_seconds.count() - level_time <= 0.3 * (fireball_index + 1) && elapsed_seconds.count() >= 0.3 * (fireball_index - 0.5)) {
+                if (elapsed_seconds.count() - level_time <= 0.3 * (sword_index + 1) && elapsed_seconds.count() >= 0.3 * (sword_index - 0.5) && boss->is_alive()) {
                     boss->use_sword();
-                    fireball_index++;
+                    sword_index++;
                 }
                 for (int i = 0; i < 50; i++) {
                     if (enemies[i].is_alive()) {
