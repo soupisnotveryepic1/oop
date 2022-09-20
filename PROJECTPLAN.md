@@ -37,13 +37,15 @@ The player class has the following list of data:
 - ```int gold```
 - ```int arrows_left```
 - ```int arrow_index```
-- ```bool arrow_fired```
 - ```bool reload_arrows```
 
 **Projectile**  
 The projectile class has the following list of data:
 
 ## Tasks and timeline
-
+1. Plan the concept and idea of the game with members
+2. Delegate tasks and parts of game to each individual member to complete
+3. Added character that can be controlled by user utilising the ```WASD``` keys and ```SPACEBAR``` to fire arrows
+4. Added enemies that approach player from the rightside of the screen and can be killed by arrows fired by the player
 
 ## Unit testing and debugging
