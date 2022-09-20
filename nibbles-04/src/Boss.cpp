@@ -9,7 +9,7 @@ void Boss::resize() {
 Boss::Boss() {
     resize();
     alive = false;
-    swords = new Sword[100];
+    swords = new Sword[500];
     sword_index = 0;
     damage = 3;
 }
@@ -27,7 +27,7 @@ void Boss::draw(RenderWindow* window) {
     }
 }
 
-void Boss::use_fireball() {
+void Boss::use_sword() {
     if (!swords[sword_index].is_fired()) {
         swords[sword_index].use(Vector2f(sprite.getPosition().x + 55, sprite.getPosition().y + 20));
         sword_index++;

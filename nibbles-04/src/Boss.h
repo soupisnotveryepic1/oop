@@ -12,7 +12,7 @@ private:
 public:
     Boss();
     void draw(RenderWindow* window);
-    void use_fireball();
+    void use_sword();
     bool successful_hit(Vector2f player_position);
     ~Boss(){delete[] swords;}
 };

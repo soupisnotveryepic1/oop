@@ -161,7 +161,7 @@ public:
                     }
                 }
                 if (elapsed_seconds.count() - level_time <= 0.3 * (fireball_index + 1) && elapsed_seconds.count() >= 0.3 * (fireball_index - 0.5)) {
-                    boss->use_fireball();
+                    boss->use_sword();
                     fireball_index++;
                 }
                 for (int i = 0; i < 50; i++) {

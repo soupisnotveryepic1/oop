@@ -16,6 +16,6 @@ public:
     void activate_enemy(Vector2f spawn_point, int max_hp, int damage, float speed);
     virtual void draw(RenderWindow* window);
     Vector2f get_position() {return sprite.getPosition();}
-    virtual void use_fireball() {}
+    virtual void use_sword() {}
     virtual bool successful_hit(Vector2f position){}
 };
