@@ -7,14 +7,14 @@ difficulty as the user progresses through them defeating enemies along the way a
 receive improvements to their movement speed arrow damage and arrow reload speed by purchasing upgrades with coins earnt by killing enemies.
 
 ## Potential classes
-- Arrow
-- Boss
-- Character
-- Enemy
-- Game
-- Player
-- Projectile
-- Sword
+- ```Arrow```
+- ```Boss```
+- ```Character```
+- ```Enemy```
+- ```Game```
+- ```Player```
+- ```Projectile```
+- ```Sword```
 
 ## Potential data and function members of classes
 **Arrow**  
