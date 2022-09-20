@@ -7,45 +7,45 @@ difficulty as the user progresses through them defeating enemies along the way a
 receive improvements to their movement speed arrow damage and arrow reload speed by purchasing upgrades with coins earnt by killing enemies.
 
 ## Potential classes
-- Arrow
-- Boss
-- Character
-- Enemy
-- Game
-- Player
-- Projectile
-- Sword
+- ```Arrow```
+- ```Boss```
+- ```Character```
+- ```Enemy```
+- ```Game```
+- ```Player```
+- ```Projectile```
+- ```Sword```
+
 ## Potential data and function members of classes
-
-**Arrow**
+**Arrow**  
 The arrow class has the following list of data:
--
 
-**Boss**
+**Boss**  
 The boss class has the following list of data:
--
 
-**Character**
+**Character**  
 The character class has the following list of data:
--
 
-**Enemy**
+**Enemy**  
 The enemy class has the following list of data:
--
 
-**Game**
+**Game**  
 The game class has the following list of data:
--
 
-**Player**
-The player chass has the following list of data:
--
+**Player**  
+The player class has the following list of data:
+- ```int gold```
+- ```int arrows_left```
+- ```int arrow_index```
+- ```bool reload_arrows```
 
-**Projectile**
+**Projectile**  
 The projectile class has the following list of data:
--
 
 ## Tasks and timeline
-
+1. Plan the concept and idea of the game with members
+2. Delegate tasks and parts of game to each individual member to complete
+3. Added character that can be controlled by user utilising the ```WASD``` keys and ```SPACEBAR``` to fire arrows
+4. Added enemies that approach player from the rightside of the screen and can be killed by arrows fired by the player
 
 ## Unit testing and debugging
