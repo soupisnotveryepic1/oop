@@ -102,7 +102,7 @@ public:
     }
 
     void change_gold(int amount) {
-        gold = gold + amount;
+        gold += amount;
     }
 
     Vector2f get_position(){
