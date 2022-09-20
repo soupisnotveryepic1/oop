@@ -15,35 +15,33 @@ receive improvements to their movement speed arrow damage and arrow reload speed
 - Player
 - Projectile
 - Sword
+
 ## Potential data and function members of classes
-
-**Arrow**
+**Arrow**  
 The arrow class has the following list of data:
--
 
-**Boss**
+**Boss**  
 The boss class has the following list of data:
--
 
-**Character**
+**Character**  
 The character class has the following list of data:
--
 
-**Enemy**
+**Enemy**  
 The enemy class has the following list of data:
--
 
-**Game**
+**Game**  
 The game class has the following list of data:
--
 
-**Player**
-The player chass has the following list of data:
--
+**Player**  
+The player class has the following list of data:
+- ```int gold```
+- ```int arrows_left```
+- ```int arrow_index```
+- ```bool arrow_fired```
+- ```bool reload_arrows```
 
-**Projectile**
+**Projectile**  
 The projectile class has the following list of data:
--
 
 ## Tasks and timeline
 
