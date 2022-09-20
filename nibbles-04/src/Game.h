@@ -1,12 +1,12 @@
-#include <iostream>
 #pragma once
+#include <SFML/Graphics.hpp>
+#include <chrono>
+#include <iostream>
 #include "Player.h"
 #include "Arrow.h"
 #include "Enemy.h"
 #include "Sword.h"
 #include "Boss.h"
-#include <chrono>
-#include <SFML/Graphics.hpp>
 using namespace std;
 using namespace sf;
 
@@ -35,42 +35,52 @@ public:
     Game(int height, int width, string name) {
         window = new RenderWindow(VideoMode(height,width), name);
         window->setFramerateLimit(144);
+
         player = new Player(100,400, 5);
         boss = new Boss;
         enemies = new Enemy[50];
+
         if (!font.loadFromFile("C:/textures/font.ttf")){
             cout << "font not found" << endl;
         }
+
         gold_text.setFont(font);
         gold_text.setFillColor(sf::Color::Yellow);
         gold_text.setCharacterSize(20);
+
         speed_text.setFont(font);
         speed_text.setFillColor(sf::Color::Cyan);
         speed_text.setCharacterSize(20);
+
         damage_text.setFont(font);
         damage_text.setFillColor(sf::Color::Magenta);
         damage_text.setCharacterSize(20);
+
         instructions_text.setFont(font);
         instructions_text.setFillColor(sf::Color::White);
         instructions_text.setCharacterSize(100);
+
         goldTexture.loadFromFile("C:/textures/gold.png");
         goldSprite.setTexture(goldTexture);
         goldSprite.scale(0.12f,0.12f);
         goldSprite.setPosition(20,770);
+
         enemy_index = 0;
         score = 0;
         enemy_number = 0;
         fireball_index = 0;
         level = 0;
     }
+
     void run() {
         backgroundTexture.loadFromFile("C:/textures/background.gif");
         backgroundSprite.setTexture(backgroundTexture);
         backgroundSprite.setPosition(0,0);
         backgroundSprite.scale(1.44,1.44);
-        string instruction;
-        instruction = "Instructions: \n Press Space to shoot arrows";
+
+        string instruction = "Instructions: \n Press Space to shoot arrows";
         auto start = std::chrono::steady_clock::now();
+
         while (window->isOpen())
         {
             Event event;
@@ -243,6 +253,9 @@ public:
         }
     }
     ~Game() {
-        delete this->window;
+        delete window;
+        delete player;
+        delete[] enemies;
+        delete boss;
     };
 };
