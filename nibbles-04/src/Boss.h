@@ -4,7 +4,7 @@
 #include "Enemy.h"
 using namespace sf;
 
-class Boss : public Enemy {
+class Boss : public Enemy { // inherits class Enemy, which inherits class Character
 private:
     int sword_index;
     Projectile* swords;
@@ -14,5 +14,5 @@ public:
     void draw(RenderWindow* window);
     void use_sword();
     bool successful_hit(Vector2f player_position);
-    ~Boss(){delete[] swords;}
+    ~Boss(){delete[] swords;} // when boss goes out of scope, deletes the swords pointer
 };

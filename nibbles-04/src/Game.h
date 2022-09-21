@@ -39,7 +39,7 @@ public:
         window = new RenderWindow(VideoMode(height,width), name);
         window->setFramerateLimit(144);
         // creates the characters that will be used in this game
-        player = new Player(100,400, 5);
+        player = new Player(100,400, 10);
         boss = new Boss;
         enemies = new Enemy[50];
 
@@ -261,15 +261,12 @@ public:
             // draws the objects needed to the window
             window->draw(backgroundSprite);
             player->draw(window);
-            if (level == 0) {
-                window->draw(instructions_text);
-            }
-            for (int i = 0; i < 50; i++) {
+            for (int i = 0; i < 50; i++) { // draws 50 enemies, but only when alive
                 if (enemies[i].is_alive()) {
                     enemies[i].draw(window);
                 }
             }
-            if (boss->is_alive()){
+            if (boss->is_alive()){ // draws boss when alive
                 boss->draw(window);
             }
             window->draw(gold_text);
