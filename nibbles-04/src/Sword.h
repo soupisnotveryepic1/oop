@@ -9,6 +9,6 @@ private:
     void initTexture();
     void initSprite();
 public:
-    Sword();
-    bool is_hit(Vector2f player_position);
+    Sword(); // constructor
+    bool is_hit(Vector2f player_position); // checks if sword hits player
 };

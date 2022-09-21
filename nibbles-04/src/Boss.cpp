@@ -9,7 +9,7 @@ void Boss::resize() {
 Boss::Boss() {
     resize();
     alive = false;
-    swords = new Sword[500];
+    swords = new Sword[200];
     sword_index = 0;
     damage = 3;
 }
@@ -32,12 +32,11 @@ void Boss::use_sword() {
         swords[sword_index].use(Vector2f(sprite.getPosition().x + 55, sprite.getPosition().y + 20));
         sword_index++;
     }
-    cout << sword_index << endl;
 }
 
 bool Boss::successful_hit(Vector2f player_position) {
     bool sword_hit = false;
-    for (int i = 0; i < 50; i++) {
+    for (int i = 0; i < 200; i++) {
         if (swords[i].is_hit(player_position) && swords[i].is_fired()) {
             swords[i].hit_target();
             return true;
