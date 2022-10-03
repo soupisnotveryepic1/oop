@@ -9,6 +9,8 @@ private:
     void initTexture();
     void initSprite();
 public:
-    Sword(); // constructor
-    bool is_hit(Vector2f player_position); // checks if sword hits player
+    // Initial constructor for Sword
+    Sword();
+    // Function that returns true if sword has hit player's hitbox, returns false otherwise.
+    bool is_hit(Vector2f player_position);
 };

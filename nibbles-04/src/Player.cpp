@@ -10,7 +10,7 @@ void Player::initTexture() {
 void Player::initSprite() {
     // initialises the sprite of the player and re-sizes it to an appropriate size
     playerSprite.setTexture(playerTexture);
-    playerSprite.scale(-1.0f,1.0f);
+    playerSprite.scale(-1.25f,1.25f);
 }
 
 Player::Player(int x_pos, int y_pos, int health) {

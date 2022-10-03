@@ -27,8 +27,8 @@ Sword::Sword() {
 
 bool Sword::is_hit(Vector2f player_position) {
     // checks if the sword has hit the player or not
-    if (player_position.x >= sprite.getPosition().x - 25 && player_position.x <= sprite.getPosition().x + 25 && player_position.y >= sprite.getPosition().y - 75 && player_position.y <= sprite.getPosition().y){
-        // if the sword hits the player (in the hitbox), returns boolean true if so
+    if (player_position.x >= sprite.getPosition().x - 25 && player_position.x <= sprite.getPosition().x + 50 && player_position.y >= sprite.getPosition().y - 100 && player_position.y <= sprite.getPosition().y){
+        // if the sword hits the player (in the hitbox), returns true if so
         return true;
     }
     // if not, returns false;

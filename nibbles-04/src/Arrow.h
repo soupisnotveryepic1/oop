@@ -10,6 +10,8 @@ private:
     void initTexture();
     void initSprite();
 public:
-    Arrow(); // constructor
-    bool is_hit(Vector2f enemy_position); // checks if arrow has hit enemy
+    // Initial Arrow Constructor
+    Arrow();
+    // Function that returns true if arrow has hit the enemy's hitbox, and false otherwise.
+    bool is_hit(Vector2f enemy_position);
 };

@@ -23,12 +23,15 @@ private:
     int sword_index;
     int level;
     int score;
+    int gold_spent;
+    int arrows_fired;
     double level_time;
     Text gold_text;
     Text instructions_text;
     Text speed_text;
     Text damage_text;
     Text health_text;
+    Text result_text;
     Font font;
     Sprite goldSprite;
     Texture goldTexture;
@@ -65,7 +68,11 @@ public:
 
         instructions_text.setFont(font);
         instructions_text.setFillColor(sf::Color::White);
-        instructions_text.setCharacterSize(50);
+        instructions_text.setCharacterSize(30);
+
+        result_text.setFont(font);
+        result_text.setFillColor(sf::Color::Cyan);
+        result_text.setCharacterSize(30);
         // initialising textures that the used by the game
         goldTexture.loadFromFile("C:/textures/gold.png");
         goldSprite.setTexture(goldTexture);
@@ -81,6 +88,8 @@ public:
         score = 0;
         enemy_number = 0;
         sword_index = 0;
+        arrows_fired = 0;
+        gold_spent = 0;
         level = 0;
     }
 
@@ -103,8 +112,8 @@ public:
                     window->close();
                 }
                 // moves player using Up/Down/Right/Left keys, and stops the player from moving off the screen
-                // if level == 0, instructions are eing shown, so player cannot move
-                if (level != 0) {
+                // if level == 0, instructions are being shown, so player cannot move
+                if (level == 1) {
                     if (Keyboard::isKeyPressed(Keyboard::Up) && player->get_position().y > 0) {
                         player->move_up();
                     }
@@ -121,16 +130,19 @@ public:
                     if (event.type == Event::KeyReleased) {
                         if (event.key.code == Keyboard::Space) {
                             player->use_arrow();
+                            arrows_fired++;
                         }
                         // upgrades player's damage if gold possessed is more than 500, and subtracts 500 gold from player
                         if (event.key.code == Keyboard::Z && player->get_gold() >= 500){
                             player->upgrade_damage();
                             player->change_gold(-500);
+                            gold_spent+=500;
                         }
                         // upgrades player's speed if gold possessed is more than 350, and subtracts 500 gold from player
                         if (event.key.code == Keyboard::U && player->get_gold() >= 350){
                             player->upgrade_speed();
                             player->change_gold(-350);
+                            gold_spent+=350;
                         }
                     }
                     // reloads player's arrows when key R is pressed and the player has no arrows left
@@ -149,12 +161,7 @@ public:
             // calculates how much time has passed since game launced
             auto end = std::chrono::steady_clock::now();
             std::chrono::duration<double> elapsed_seconds = end - start;
-            // if level == 0, displays instructions on the screen
-            if (level == 0) {
-                instructions_text.setPosition(50,100);
-                instructions_text.setString(instruction);
-                window->draw(instructions_text);
-            }
+
             // if level == 1 (game being played), spawns enemies
             if (level == 1) {
                 if (enemy_index < 10) { // wave 1, spawns 10 enemies, at intervals of 1 second
@@ -210,7 +217,7 @@ public:
                             enemy_number++;
                         }
                         if (player->get_health() <= 0) {
-                            //cout << "player die" << endl;
+                            level = 2;
                         }
                     }
                     if (boss->is_alive()) {
@@ -221,6 +228,7 @@ public:
                                 player->change_gold(10000); // player gets gold
                                 score = score + 20; // + 20 score
                                 enemy_number++;
+                                level = 3;
                             }
                         }
                         if (boss->successful_hit(player->get_position())){ // if boss's sword hits player:
@@ -230,14 +238,16 @@ public:
                             boss->die(); // boss dies
                             player->take_damage(boss->get_damage()); // player takes damage
                             enemy_number++;
+                            level = 2;
                         }
                         if (player->hit_by_enemy(boss->get_position())) { // if boss hits enemy:
                             boss->die(); // boss dies
                             player->take_damage(boss->get_damage()); // player takes damage
                             enemy_number++;
+                            level = 2;
                         }
                         if (player->get_health() <= 0) {
-                            //cout << "player die" << endl;
+                            level = 2;
                         }
                     }
 
@@ -259,22 +269,42 @@ public:
             gold_text.setPosition(50,770);
             gold_text.setString(gold_display);
             // draws the objects needed to the window
-            window->draw(backgroundSprite);
-            player->draw(window);
-            for (int i = 0; i < 50; i++) { // draws 50 enemies, but only when alive
-                if (enemies[i].is_alive()) {
-                    enemies[i].draw(window);
+            // if level == 0, displays instructions on the screen
+            if (level == 0) {
+                instructions_text.setPosition(400,400);
+                instructions_text.setString(instruction);
+                window->draw(instructions_text);
+            }
+            if (level == 1) {
+                window->draw(backgroundSprite);
+                player->draw(window);
+                for (int i = 0; i < 50; i++) { // draws 50 enemies, but only when alive
+                    if (enemies[i].is_alive()) {
+                        enemies[i].draw(window);
+                    }
                 }
+                if (boss->is_alive()) { // draws boss when alive
+                    boss->draw(window);
+                }
+                window->draw(gold_text);
+                window->draw(speed_text);
+                window->draw(damage_text);
+                window->draw(health_text);
+                window->draw(goldSprite);
+                window->draw(heartSprite);
             }
-            if (boss->is_alive()){ // draws boss when alive
-                boss->draw(window);
+            if (level == 2){
+                string result_display = "You lost!\nYour score was:" + to_string(score) + "/70\nGold Spent:" + to_string(gold_spent) +  "\nNumber of arrows fired:" + to_string(arrows_fired) ;
+                result_text.setPosition(120,120);
+                result_text.setString(result_display);
+                window->draw(result_text);
             }
-            window->draw(gold_text);
-            window->draw(speed_text);
-            window->draw(damage_text);
-            window->draw(health_text);
-            window->draw(goldSprite);
-            window->draw(heartSprite);
+            if (level == 3){
+                string result_display = "You won!\nYour score was:" + to_string(score) + "/70\nGold Spent:" + to_string(gold_spent) +  "\nNumber of arrows fired:" + to_string(arrows_fired) ;
+                result_text.setPosition(120,120);
+                result_text.setString(result_display);
+                window->draw(result_text);
+            }
             window->display();
         }
     }

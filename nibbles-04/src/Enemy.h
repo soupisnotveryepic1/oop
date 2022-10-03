@@ -12,10 +12,14 @@ protected:
     void initSprite();
     void initTexture();
 public:
+    // Constructor for enemy
     Enemy();
+    // Function that activates the enemy by setting alive to true, and gives it stats such as spawn point, health, damage and speed
     void activate_enemy(Vector2f spawn_point, int max_hp, int damage, float speed);
+    // Virtual function that draws enemy to the window
     virtual void draw(RenderWindow* window);
-    Vector2f get_position() {return sprite.getPosition();} // returns the enemy's position
+    // Function that returns the enemy's position
+    Vector2f get_position() {return sprite.getPosition();}
     virtual void use_sword() {}
-    virtual bool successful_hit(Vector2f position){}
+    virtual bool successful_hit(Vector2f position) {}
 };

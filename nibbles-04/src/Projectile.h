@@ -14,14 +14,22 @@ protected:
     virtual void initTexture() = 0;
     virtual void initSprite() = 0;
 public:
-    void move_projectile() {sprite.move(speed * direction);} // moves projectile according to its speed and direction
-    void use(Vector2f firing_position) { // sets the projectile to be fired at the position of the entity that is firing it
+    // Function that moves projectile according to its speed and direction
+    void move_projectile() {sprite.move(speed * direction);}
+    // Function that sets the projectile to be fired at the position of the entity that is firing it
+    void use(Vector2f firing_position) {
         sprite.setPosition(firing_position);
         fired = true; // sets boolean variable fired to true, so that the code knows that this projectile is fired
     }
-    bool is_fired() {return fired;} // checks if projectile is fired of now
+    // Function that checks if projectile is fired or not, returns true if it is, false otherwise
+    bool is_fired() {return fired;}
+    // Function that sets fired to false when the projectile hits the target
+    // Function that sets fired to false when the projectile hits the target
     bool hit_target() {fired = false;}
-    void draw(RenderWindow* window) {window->draw(sprite);} // draws projectile to window
+    // Function that draws projectile to window
+    void draw(RenderWindow* window) {window->draw(sprite);}
+    // Virtual function for collision detection between projectile and characters
     virtual bool is_hit(Vector2f target_position) = 0;
+    // Virtual destructor
     virtual ~Projectile(){}
 };

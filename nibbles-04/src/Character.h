@@ -11,11 +11,18 @@ protected:
     int health;
     int damage;
 public:
-    virtual void draw(RenderWindow* window) = 0; // virtual function that will draw the character to the window
-    void take_damage(int damage_received) {health = health - damage_received;} // makes the character take damage
-    int get_health() {return health;} // returns character's health
-    int get_damage() {return damage;} // returns character's damage
-    bool is_alive() {return alive;} // returns if character is alive of not
-    float get_speed() {return speed;} // returns character's speed
-    void die() {alive = false;} // kills character
+    // virtual function that will draw the character to the window
+    virtual void draw(RenderWindow* window) = 0;
+    // Function that makes the character take damage
+    void take_damage(int damage_received) {health = health - damage_received;}
+    // Function that returns the character's health
+    int get_health() {return health;}
+    // Function that returns the character's damage stat
+    int get_damage() {return damage;}
+    // Function that returns true if character is alive, and false otherwise.
+    bool is_alive() {return alive;}
+    // Function that returns the character's speed
+    float get_speed() {return speed;}
+    // Function that kills the character by setting alive to false
+    void die() {alive = false;}
 };

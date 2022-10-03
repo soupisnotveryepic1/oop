@@ -10,9 +10,14 @@ private:
     Projectile* swords;
     void resize();
 public:
+    // Initial Boss constructor
     Boss();
+    // Function that draws the boss and the swords onto the window if the boss is alive.
     void draw(RenderWindow* window);
+    // Function that allows the boss to use the swords.
     void use_sword();
+    // Function that returns true if a sword has hit the player's hitbox, and returns false otherwise.
     bool successful_hit(Vector2f player_position);
-    ~Boss(){delete[] swords;} // when boss goes out of scope, deletes the swords pointer
+    // Destructor for Boss, deletes swords pointer
+    ~Boss(){delete[] swords;}
 };

@@ -17,27 +17,41 @@ private:
     void initTexture();
     void initSprite();
 public:
+    // Initial constructor for Player
     Player(int x_pos, int y_pos, int health);
-    ~Player(){delete[] arrows;}; // when player goes out of scope, deletes the arrows pointer
+    // Destructor for Player, which deletes the arrows pointer
+    ~Player(){delete[] arrows;};
+    // Function that draws the player and arrows to the window.
     void draw(RenderWindow* window);
+    // Functions that moves the player right/left/up/down
     void move_right() {playerSprite.move(speed,0);}
     void move_left() {playerSprite.move(-speed,0);}
     void move_up() {playerSprite.move(0,-speed);}
     void move_down() {playerSprite.move(0,speed);}
-    void upgrade_speed() { // upgrades player's speed;
+    // Function that upgrades player's speed;
+    void upgrade_speed() {
         speed++;
         cout << "speed increased to " << speed << endl;
     }
-    void upgrade_damage() { // upgrades player's damage
+    // Function that upgrades player's damage
+    void upgrade_damage() {
         damage++;
         cout << "damage increased to " << damage << endl;
     }
+    // Function that reloads the player's arrows if needed
     void reload();
+    // Function that allows the player to use an arrow
     void use_arrow();
-    int no_arrows_left() {return arrows_left;} // returns how many arrows the player has left
+    // Function that returns how many arrows the player has left
+    int no_arrows_left() {return arrows_left;}
+    // Function that returns true if an arrow has hit an enemy, and returns false otherwise.
     bool successful_hit(Vector2f enemy_position);
+    // Function that returns true if player has been hit by an enemy, and returns false otherwise.
     bool hit_by_enemy(Vector2f enemy_position);
-    int get_gold() {return gold;} // returns amount of gold player has
-    void change_gold(int amount) {gold += amount;} // changes the amount of gold the player has
-    Vector2f get_position() {return playerSprite.getPosition();} // returns player's position
+    // Function that returns amount of gold player has
+    int get_gold() {return gold;}
+    // Function that changes the amount of gold the player has
+    void change_gold(int amount) {gold += amount;}
+    // Function that returns player's position
+    Vector2f get_position() {return playerSprite.getPosition();}
 };
