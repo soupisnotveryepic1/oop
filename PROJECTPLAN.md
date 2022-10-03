@@ -158,9 +158,15 @@ The Boss class will have a data member which allows it to throw swords (Projecti
 11. Add an ending screen when the player dies/completes the game (has killed the final boss) that shows the player's stats. (Week 10 Tuesday)
 12. Add a restart game feature. (Week 10 Friday)
 
+
 ## User Interface and Interaction
 The player will interact with the game using the keyboard, using the arrows key to move, spacebar to shoot arrows.
 The player will also use the keyboard to purchase upgrades (U and Z buttons), which will be shown at the bottom of the screen to remind the player.
+On the instruction screen, the user will be told of all the controls that are needed to play the game.
 
 ## Unit Testing and Debugging 
+During the development of the game, small parts of the code will be tested before adding it to the main game, using ```cout``` to ensure the snippets of code are working as required.
+Once a snippet of code is added to the game, a test of the entire game will be done to see if it caused any problems with any other parts of code.
+If it has, then debugging will need to happen, which will happen through using ```cout``` onto the terminal to find out where exactly the code was not behaving as planned, and a change will be made until the code works as required.
+This process will be repeated until the entire game is finished and working as planned.
             
