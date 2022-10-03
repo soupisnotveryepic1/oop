@@ -30,6 +30,7 @@ The Arrow class has following function members:
 The Boss class has the following list of data, and inherits the Enemy class:
 - ```int sword_index```
 - ```Projectile* swords```
+
 The Boss class has following function members:
 - ```void resize()```
 - ```Boss()```
@@ -45,6 +46,7 @@ The Character class has the following list of data:
 - ```float speed```
 - ```int health```
 - ```int damage```
+
 The Character class has following function members:
 - ```virtual void draw(Renderwindow* window) = 0```
 - ```void take_damage(int damage_received)```
@@ -58,6 +60,7 @@ The Character class has following function members:
 The enemy class has the following list of data, and inherits the Character class:
 - ```Sprite sprite```
 - ```Texture texture```
+
 The Enemy class has following function members:
 - ```void initTexture()```
 - ```void initSprite()```
@@ -80,6 +83,7 @@ The Player class has the following list of data:
 - ```int arrows_left```
 - ```int arrow_index```
 - ```bool reload_arrows```
+
 The Player class has following function members:
 - ```void initTexture()```
 - ```void initSprite()```
@@ -108,6 +112,7 @@ The Projectile class has the following list of data:
 - ```float speed```
 - ```Vector2f direction```
 - ```bool fired```
+
 The Projectile class has following function members:
 - ```virtual void initTexture() = 0```
 - ```virtual void initSprite() = 0```
