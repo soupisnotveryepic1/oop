@@ -1,10 +1,11 @@
 # Object Oriented Programming Project Plan Document
 
 ## Use case and description of the project idea
-In this game, the user will be able to control a character utilising the Arrow keys to move the character along with `SPACEBAR` in order to shoot arrows 
-in the direction that the character is facing. The aim of this game is to progress through the multiple stages and levels of the game that increase with 
-difficulty as the user progresses through them defeating enemies along the way and to eventually defeat a final boss on the last level. The player can also
-receive improvements to their movement speed and arrow damage by purchasing upgrades with coins earnt by killing enemies.
+In this game, the user will be able to control a character using the arrow keys to move the character and the ```SPACEBAR``` to fire arrows in the 
+direction that the character is facing. The aim of this game is for the player to progress through the multitude of stages of the game that increase in 
+difficulty as the player progresses through them defeating enemies along the way with the goal of defeating a final boss at the end of the game. The 
+player can also receive improvements to their movement speed and arrow damage by purchasing upgrades with gold earnt from killing enemies to keep up with 
+the progressively increasing difficulty of the enemies as the player progresses through the game.
 
 ## Potential classes
 - ```Arrow```
@@ -18,8 +19,9 @@ receive improvements to their movement speed and arrow damage by purchasing upgr
 
 ## Potential data and function members of classes
 **Arrow**  
-The Arrow class inherits all the data it needs from the Projectile class.
-The Arrow class has following function members:
+The ```Arrow``` class inherits all the data and variables it needs from the ```Projectile``` class.
+
+The ```Arrow``` class has following function members:
 - ```void initTexture()```
 - ```void initSprite()```
 - ```Arrow()```
@@ -27,11 +29,11 @@ The Arrow class has following function members:
 
 
 **Boss**  
-The Boss class has the following list of data, and inherits the Enemy class:
+The ```Boss``` class has the following list of data and variables, and inherits the Enemy class:
 - ```int sword_index```
 - ```Projectile* swords```
 
-The Boss class has following function members:
+The ```Boss``` class has following function members:
 - ```void resize()```
 - ```Boss()```
 - ```void draw(Renderwindow* window)```
@@ -41,13 +43,13 @@ The Boss class has following function members:
 
 
 **Character**  
-The Character class has the following list of data:
+The ```Character``` class has the following list of data and variables:
 - ```bool alive```
 - ```float speed```
 - ```int health```
 - ```int damage```
 
-The Character class has following function members:
+The ```Character``` class has following function members:
 - ```virtual void draw(Renderwindow* window) = 0```
 - ```void take_damage(int damage_received)```
 - ```int get_health()```
@@ -57,11 +59,11 @@ The Character class has following function members:
 - ```void die()```
 
 **Enemy**  
-The enemy class has the following list of data, and inherits the Character class:
+The ```enemy``` class has the following list of data and variables, and inherits the ```Character``` class:
 - ```Sprite sprite```
 - ```Texture texture```
 
-The Enemy class has following function members:
+The ```Enemy``` class has following function members:
 - ```void initTexture()```
 - ```void initSprite()```
 - ```Enemy()```
@@ -71,11 +73,12 @@ The Enemy class has following function members:
 
 
 **Game**  
-The Game class has the following list of data:
-The Game class has following function members:
+The ```Game``` class has the following list of data and variables:
+
+The ```Game``` class has following function members:
 
 **Player**  
-The Player class has the following list of data:
+The ```Player``` class has the following list of data and variables:
 - ```Sprite playerSprite```
 - ```Texture playerTexture```
 - ```Projectile* arrows```
@@ -84,7 +87,7 @@ The Player class has the following list of data:
 - ```int arrow_index```
 - ```bool reload_arrows```
 
-The Player class has following function members:
+The ```Player``` class has following function members:
 - ```void initTexture()```
 - ```void initSprite()```
 - ```Player()```
@@ -106,14 +109,14 @@ The Player class has following function members:
 - ```~Player()```
 
 **Projectile**  
-The Projectile class has the following list of data:
+The ```Projectile``` class has the following list of data and variables:
 - ```Texture texture```
 - ```Sprite sprite```
 - ```float speed```
 - ```Vector2f direction```
 - ```bool fired```
 
-The Projectile class has following function members:
+The ```Projectile``` class has following function members:
 - ```virtual void initTexture() = 0```
 - ```virtual void initSprite() = 0```
 - ```void move_projectile()```
@@ -126,47 +129,55 @@ The Projectile class has following function members:
 - ```virtual ~Projectile()```
 
 **Sword**
-The Sword class inherits all the data it needs from the Projectile class.
-The Sword class has following function members:
+The ```Sword``` class inherits all the data and variables it needs from the ```Projectile``` class.
+
+The ```Sword``` class has following function members:
 - ```void initTexture()```
 - ```void initSprite()```
 - ```Sword()```
 - ```bool is_hit(Vector2f enemy_position)```
 
 ## Relationship between classes
-The game will be run from the Game class, using its run() function, which will have the game code in it.
-This Game class will have the Player, Enemy, and Boss data members within it, which will interact with each other to run the game.
-The Character class is an abstract class that has the data members of a generic character within the game, and the classes Player and Enemy will inherit this class.
-The Enemy and Player classes will expand upon the Character class, and specialise it into the roles that the game needs.
-The Boss class will further inherit the Enemy class, and add upon it so it can throw swords at the player in addition to having the abilities of a generic enemy.
-The Projectile class is an abstract class that has the data members of a generic projectile, and the two types of projectiles used (Sword and Arrow) will inherit this class.
-As the Sword and Arrow class have different sprites, textures and collision detection logic, which is why the Projectile class has three pure virtual functions, which allows for the function to be redefined in the derived classes.
-The Boss class will have a data member which allows it to throw swords (Projectile* swords), and the Player class will have a data member which allows it to shoot arrows (Projectile* arrows).
+The game will be run from the ‘Game’ class using the ‘run()’ function which will contain the game’s code inside it. This ‘Game’ class contains the 
+‘Player’, ‘Enemy’, and ‘Boss’ data members within it, which will interact with each other to run the game. The ‘Character’ class is an abstract class that 
+has the data members of a generic character within the game, with both the 'Player’ and ‘Enemy’ classes inheriting this class. These classes will both 
+expand upon the ‘Character’ class to form the roles required to fulfil the constructs of an ‘Enemy’ and ‘Player’ class. The ‘Boss’ class will inherit the 
+‘Enemy’ class and add on the functionality and mechanisms required for it to throw swords at the player whilst still having the abilities and attributes 
+of a generic enemy. The ‘Projectile’ class is an abstract class that has the data members of a generic projectiles, with both the ‘Sword’ and ‘Arrow’ 
+projectile classes inheriting this class. As the ‘Sword’ and ‘Arrow’ classes both have different sprites, textures and collision detection logic, the 
+‘Projectile’ class has been designed with three pure virtual functions, allowing for the function to be redefined in the derived classes. The ‘Boss’ class 
+will have a data member which allows it to throw ‘Projectile’ swords, whereas the ‘Player’ class will have a data member which allows it to shoot 
+‘Projectile’ arrows.
 
 
 ## Tasks and timeline
-1. Planned the concepts ideas and design of the game with members (Week 8 Wednesday)
-2. Delegated tasks and parts of the game to each individual member to complete (Week 8 Wednesday)
-4. Added character that can be controlled by user utilising the ```WASD``` keys and ```SPACEBAR``` to fire arrows (Week 8 Friday)
-5. Added enemies that approach player from the rightside of the screen that can be killed by arrows fired by the player (Week 1 Holidays Tuesday)
-6. Add collision detection so that the game can tell when the enemy hits the player/arrows hits enemy, and add mechanisms to deal damage to the player/enemy. (Week 1 Holidays Friday)
-7. Add upgrade mechanisms to the player so that player can buy upgrades to speed/damage with gold collected from the enemies. (Week 2 Holidays Monday)
-8. Add waves of enemies that progressively get stronger as time passes. (Enemies are faster, do more damage, and have more health) (Week 2 Holidays Thursday)
-9. Add a boss at the end that has a large amount of health and can throw swords at the player that deal damage. (Week 9 Monday)
-10. Add a score system to the game. (Week 9 Wednesday)
-11. Add an instruction screen at the start of the game. (Week 9 Friday)
-11. Add an ending screen when the player dies/completes the game (has killed the final boss) that shows the player's stats. (Week 10 Tuesday)
-12. Add a restart game feature. (Week 10 Friday)
-
+1. Discussed and planned the concepts ideas and design of the game with group members (14/09/2022)
+2. Delegated tasks and parts of the game to complete to each individual member (14/09/2022)
+3. Added main character into the game that can be controlled by the player utilising the arrow keys to move around and the spacebar to fire arrows in the 
+direction that the character is facing (16/09/2022)
+4. Added enemies that approach the player from the right-side of the screen that can be killed by arrows fired by the character (20/09/2022)
+5. Added collision detection so that the game can determine when the main character is hit by an enemy or an enemy is hit by an arrow alongside mechanisms 
+to deal damage to the player or enemies (23/09/2022)
+6. Added upgrade mechanisms to the game so that the player can choose to purchase upgrades that can enhance their movement speed or arrow damage with the 
+gold collected from killing enemies (26/09/2022)
+7. Added a mechanism that progressively increases the strength and difficulty of killing the enemies by increasing their movement speed, damage output and 
+amounts of health as the player progresses through the game (29/09/2022)
+8. Added a boss at the end of the game that has a large amount of health and can throw swords that can do deal damage to the player (3/10/2022)
+9. Added a scoring system that keeps track of the number of enemies killed the amount of gold collected (5/10/2022)
+10. Added an instruction screen at the start of the game that introduces the player to the game and the controls required to play the game (5/10/2022)
+11. Added an ending screen that appears once the player has either died when their health bar has reached zero or has completed the game by defeating the 
+final boss that displays the final statistics of the player (11/10/2022)
+12. Added a feature that allows the player to replay the game once they have either died or completed the game (14/10/2022)
 
 ## User Interface and Interaction
-The player will interact with the game using the keyboard, using the arrows key to move, spacebar to shoot arrows.
-The player will also use the keyboard to purchase upgrades (U and Z buttons), which will be shown at the bottom of the screen to remind the player.
-On the instruction screen, the user will be told of all the controls that are needed to play the game.
+Upon initially starting up the game, the player will be greeted by an instruction that will introduce the player to the game and the controls required to 
+play the game. To play and interact with the game, the player will utilise the keyboard, using the arrow keys to move and spacebar to shoot arrows. 
+Additionally, the player will also be able to purchase upgrades utilising the ‘U’ and ‘Z’ keys on the keyboard, which will be displayed at the bottom of 
+the screen to remind the player.
 
 ## Unit Testing and Debugging 
-During the development of the game, small parts of the code will be tested before adding it to the main game, using ```cout``` to ensure the snippets of code are working as required.
-Once a snippet of code is added to the game, a test of the entire game will be done to see if it caused any problems with any other parts of code.
-If it has, then debugging will need to happen, which will happen through using ```cout``` onto the terminal to find out where exactly the code was not behaving as planned, and a change will be made until the code works as required.
-This process will be repeated until the entire game is finished and working as planned.
-            
+During the development of the game, small parts of the code will be tested before being added to the main game, using GDB to debug and ensure that the 
+snippets of code are working as required. Once a snippet of code is added to the game, a test run of the entire game will be done to see if it has 
+conflicted with any other parts of the game or caused unexpected functions to occur. If this has occurred, the game will then be debugged by utilising the 
+built-in GDB debugger toolset to determine the root cause of the error. After determining the source of error, changes to the code will be made and 
+implemented so that the program will behave as planned. This process will be repeated until the game is completed and functions as expected.
