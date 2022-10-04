@@ -171,9 +171,9 @@ final boss that displays the final statistics of the player (11/10/2022)
 
 ## User Interface and Interaction
 Upon initially starting up the game, the player will be greeted by an instruction that will introduce the player to the game and the controls required to 
-play the game. To play and interact with the game, the player will utilise the keyboard, using the arrow keys to move and spacebar to shoot arrows. 
-Additionally, the player will also be able to purchase upgrades utilising the ‘U’ and ‘Z’ keys on the keyboard, which will be displayed at the bottom of 
-the screen to remind the player.
+play the game. To play and interact with the game, the player will utilise the keyboard, using the arrow keys to move and ```SPACEBAR``` to shoot arrows. 
+Additionally, the player will also be able to purchase upgrades utilising the ```U``` and ```Z``` keys on the keyboard, which will be displayed at the 
+bottom of the screen to remind the player.
 
 ## Unit Testing and Debugging 
 During the development of the game, small parts of the code will be tested before being added to the main game, using GDB to debug and ensure that the 
