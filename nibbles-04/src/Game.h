@@ -41,6 +41,7 @@ public:
     Game(int height, int width, string name) {
         window = new RenderWindow(VideoMode(height,width), name);
         window->setFramerateLimit(144);
+
         // creates the characters that will be used in this game
         player = new Player(100,400, 50);
         boss = new Boss;
