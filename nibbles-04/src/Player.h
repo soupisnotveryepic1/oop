@@ -25,6 +25,7 @@ public:
     ~Player(){delete[] arrows;};
     // Function that draws the player and arrows to the window.
     void draw(RenderWindow* window);
+
     // Functions that moves the player right/left/up/down
     void move_right() {playerSprite.move(speed,0);}
     void move_left() {playerSprite.move(-speed,0);}
