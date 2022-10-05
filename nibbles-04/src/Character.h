@@ -4,14 +4,14 @@
 using namespace std;
 using namespace sf;
 
-class Character {
+class Character { // Abstract class
 protected:
     bool alive;
     float speed;
     int health;
     int damage;
 public:
-    // virtual function that will draw the character to the window
+    // Pure virtual function that will draw the character to the window
     virtual void draw(RenderWindow* window) = 0;
     // Function that makes the character take damage
     void take_damage(int damage_received) {health = health - damage_received;}

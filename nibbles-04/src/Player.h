@@ -14,7 +14,9 @@ private:
     int arrows_left;
     int arrow_index;
     bool reload_arrows;
+    // Function that initialises the texture of the player
     void initTexture();
+    // Function that initialises the sprite of the player
     void initSprite();
 public:
     // Initial constructor for Player

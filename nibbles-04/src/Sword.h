@@ -6,7 +6,9 @@ using namespace sf;
 
 class Sword : public Projectile{
 private:
+    // Function that initialises the texture of the sword
     void initTexture();
+    // Function that initialises the sprite of the sword
     void initSprite();
 public:
     // Initial constructor for Sword

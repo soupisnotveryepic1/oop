@@ -7,7 +7,9 @@ using namespace sf;
 
 class Arrow : public Projectile {
 private:
+    // Function that initialises the texture of the arrow
     void initTexture();
+    // Function that initialises the sprite of the arrow
     void initSprite();
 public:
     // Initial Arrow Constructor

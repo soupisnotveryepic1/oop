@@ -42,7 +42,7 @@ public:
         window = new RenderWindow(VideoMode(height,width), name);
         window->setFramerateLimit(144);
         // creates the characters that will be used in this game
-        player = new Player(100,400, 10);
+        player = new Player(100,400, 50);
         boss = new Boss;
         enemies = new Enemy[50];
 
@@ -100,7 +100,7 @@ public:
         backgroundSprite.setPosition(0,0);
         backgroundSprite.scale(1.44,1.44);
 
-        string instruction = "Instructions: \n Press Space to shoot arrows";
+        string instruction = "Controls: \n\nArrow keys to move\n\nPress Space to shoot arrows\n\nU: Upgrade Speed\n\nZ: Upgrade Damage\n\nR: Reload Arrows\n\nPress L to Start";
         auto start = std::chrono::steady_clock::now(); // starts timer once game is launched
 
         while (window->isOpen())
@@ -158,12 +158,13 @@ public:
                 std::chrono::duration<double> time_to_start = inst - start; // calculates how much time it took for the player to start the game from when the game was launched
                 level_time = time_to_start.count(); // puts the time_to_start into variable level_time
             }
-            // calculates how much time has passed since game launced
+            // calculates how much time has passed since game launched
             auto end = std::chrono::steady_clock::now();
             std::chrono::duration<double> elapsed_seconds = end - start;
 
             // if level == 1 (game being played), spawns enemies
             if (level == 1) {
+                cout << elapsed_seconds.count() - level_time << endl;
                 if (enemy_index < 10) { // wave 1, spawns 10 enemies, at intervals of 1 second
                     if (elapsed_seconds.count() - level_time > enemy_index && !enemies[enemy_index].is_alive()) {
                         enemies[enemy_index].activate_enemy(Vector2f(1000, rand() % 550 + 100), 2, 1, 0.5f);
@@ -184,7 +185,7 @@ public:
                 }
                 if (elapsed_seconds.count() - level_time >= 80 && enemy_index == 50) {
                     if (!boss->is_alive()) {  // boss spawn 80 seconds after player moves off instruction screen
-                        boss->activate_enemy(Vector2f(800, 300), 200, 3, 0.3f);
+                        boss->activate_enemy(Vector2f(800, 300), 30, 3, 0.3f);
                         enemy_index++;
                     }
                 }
@@ -271,7 +272,7 @@ public:
             // draws the objects needed to the window
             // if level == 0, displays instructions on the screen
             if (level == 0) {
-                instructions_text.setPosition(400,400);
+                instructions_text.setPosition(100,100);
                 instructions_text.setString(instruction);
                 window->draw(instructions_text);
             }
@@ -298,16 +299,42 @@ public:
                 result_text.setPosition(120,120);
                 result_text.setString(result_display);
                 window->draw(result_text);
+                /*if (event.type == Event::KeyReleased) {
+                    if (event.key.code == Keyboard::Space) {
+                        restart();
+                    }
+                }*/
             }
             if (level == 3){
                 string result_display = "You won!\nYour score was:" + to_string(score) + "/70\nGold Spent:" + to_string(gold_spent) +  "\nNumber of arrows fired:" + to_string(arrows_fired) ;
                 result_text.setPosition(120,120);
                 result_text.setString(result_display);
                 window->draw(result_text);
+               /* if (event.type == Event::KeyReleased) {
+                    if (event.key.code == Keyboard::Space) {
+                        restart();
+                    }
+                }*/
             }
             window->display();
         }
     }
+/*    void restart(){
+        enemy_index = 0;
+        score = 0;
+        enemy_number = 0;
+        sword_index = 0;
+        arrows_fired = 0;
+        gold_spent = 0;
+        level = 0;
+        auto start = std::chrono::steady_clock::now();
+        delete player;
+        delete[] enemies;
+        delete boss;
+        player = new Player(100,400, 10);
+        boss = new Boss;
+        enemies = new Enemy[50];
+    }*/
     ~Game() {
         // deletes the memory stored to the heap when game goes out of scope
         delete window;

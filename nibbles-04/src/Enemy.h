@@ -9,7 +9,9 @@ class Enemy : public Character { // inherits class Character
 protected:
     Sprite sprite;
     Texture texture;
+    // Function that initialises the sprite of the enemy
     void initSprite();
+    // Function that initialises the texture of the enemy
     void initTexture();
 public:
     // Constructor for enemy

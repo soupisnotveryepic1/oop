@@ -8,6 +8,7 @@ class Boss : public Enemy { // inherits class Enemy, which inherits class Charac
 private:
     int sword_index;
     Projectile* swords;
+    // Function that re-sizes the Boss's sprite
     void resize();
 public:
     // Initial Boss constructor

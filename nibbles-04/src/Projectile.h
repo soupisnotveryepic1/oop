@@ -4,14 +4,16 @@
 using namespace std;
 using namespace sf;
 
-class Projectile {
+class Projectile { // Abstract class
 protected:
     Sprite sprite;
     Texture texture;
     float speed;
     Vector2f direction;
     bool fired;
+    // Pure virtual function that will initialise the texture of the projectile
     virtual void initTexture() = 0;
+    // Pure virtual function that will initialise the sprite of the projectile
     virtual void initSprite() = 0;
 public:
     // Function that moves projectile according to its speed and direction
@@ -28,7 +30,7 @@ public:
     bool hit_target() {fired = false;}
     // Function that draws projectile to window
     void draw(RenderWindow* window) {window->draw(sprite);}
-    // Virtual function for collision detection between projectile and characters
+    // Pure virtual function for collision detection between projectile and characters
     virtual bool is_hit(Vector2f target_position) = 0;
     // Virtual destructor
     virtual ~Projectile(){}
