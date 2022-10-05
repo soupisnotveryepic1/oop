@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\nibbles_04.dir/objects.a
+C:\mingw64\bin\ar.exe qc CMakeFiles\nibbles_04.dir/objects.a @CMakeFiles\nibbles_04.dir\objects1.rsp
+C:\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\nibbles_04.dir/objects.a -Wl,--no-whole-archive -o nibbles_04.exe -Wl,--out-implib,libnibbles_04.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\nibbles_04.dir\linklibs.rsp
