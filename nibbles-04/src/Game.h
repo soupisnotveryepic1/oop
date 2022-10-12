@@ -165,7 +165,7 @@ public:
 
             // if level == 1 (game being played), spawns enemies
             if (level == 1) {
-                cout << elapsed_seconds.count() - level_time << endl;
+                //cout << elapsed_seconds.count() - level_time << endl;
                 if (enemy_index < 10) { // wave 1, spawns 10 enemies, at intervals of 1 second
                     if (elapsed_seconds.count() - level_time > enemy_index && !enemies[enemy_index].is_alive()) {
                         enemies[enemy_index].activate_enemy(Vector2f(1000, rand() % 550 + 100), 2, 1, 0.5f);
@@ -194,7 +194,6 @@ public:
                     // makes boss throw a sword
                     boss->use_sword();
                     sword_index++;
-                    cout << sword_index << endl;
                 }
                 for (int i = 0; i < 50; i++) {
                     if (enemies[i].is_alive()) {
@@ -215,7 +214,7 @@ public:
                         if (player->hit_by_enemy(enemies[i].get_position())) { // if enemy hits player
                             enemies[i].die(); // enemy dies
                             player->take_damage(enemies[i].get_damage()); // player takes damage equivalent to enemy's damage stat
-                            player->change_gold(50); // enemy gets 50 gold
+                            player->change_gold(50); // player gets 50 gold
                             enemy_number++;
                         }
                         if (player->get_health() <= 0) {
@@ -300,27 +299,27 @@ public:
                 result_text.setPosition(120,120);
                 result_text.setString(result_display);
                 window->draw(result_text);
-                /*if (event.type == Event::KeyReleased) {
+                if (event.type == Event::KeyReleased) {
                     if (event.key.code == Keyboard::Space) {
                         restart();
                     }
-                }*/
+                }
             }
             if (level == 3){
                 string result_display = "You won!\nYour score was:" + to_string(score) + "/70\nGold Spent:" + to_string(gold_spent) +  "\nNumber of arrows fired:" + to_string(arrows_fired) ;
                 result_text.setPosition(120,120);
                 result_text.setString(result_display);
                 window->draw(result_text);
-               /* if (event.type == Event::KeyReleased) {
+                if (event.type == Event::KeyReleased) {
                     if (event.key.code == Keyboard::Space) {
                         restart();
                     }
-                }*/
+                }
             }
             window->display();
         }
     }
-/*    void restart(){
+    void restart(){
         enemy_index = 0;
         score = 0;
         enemy_number = 0;
@@ -335,7 +334,7 @@ public:
         player = new Player(100,400, 10);
         boss = new Boss;
         enemies = new Enemy[50];
-    }*/
+    }
     ~Game() {
         // deletes the memory stored to the heap when game goes out of scope
         delete window;

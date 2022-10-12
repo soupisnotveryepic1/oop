@@ -5,7 +5,7 @@
 using namespace std;
 using namespace sf;
 
-class Player : public Character {
+class Player : public Character { // inherits Character class
 private:
     Sprite playerSprite;
     Texture playerTexture;

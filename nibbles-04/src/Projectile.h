@@ -26,7 +26,6 @@ public:
     // Function that checks if projectile is fired or not, returns true if it is, false otherwise
     bool is_fired() {return fired;}
     // Function that sets fired to false when the projectile hits the target
-    // Function that sets fired to false when the projectile hits the target
     bool hit_target() {fired = false;}
     // Function that draws projectile to window
     void draw(RenderWindow* window) {window->draw(sprite);}

@@ -15,7 +15,7 @@ void Enemy::initSprite() {
 }
 
 Enemy::Enemy() {
-    // initialised texture and sprite when constructed
+    // initialise texture and sprite when constructed
     initTexture();
     initSprite();
     // when first constructed, it is not alive yet, so sets alive to false
@@ -23,7 +23,7 @@ Enemy::Enemy() {
 }
 
 
-void Enemy::activate_enemy(Vector2f spawn_point, int max_hp, int damage, float speed) { // activates enemy
+void Enemy::activate_enemy(Vector2f spawn_point, int max_hp, int damage, float speed) {
     // when enemy is activated, enemy receives its stats (health, damage, speed)
     health = max_hp;
     this->damage = damage;
@@ -34,7 +34,7 @@ void Enemy::activate_enemy(Vector2f spawn_point, int max_hp, int damage, float s
     sprite.setPosition(spawn_point);
 }
 
-void Enemy::draw(RenderWindow* window) { // draws enemy to window
+void Enemy::draw(RenderWindow* window) {
     if (alive) { // if enemy is alive:
         sprite.move(-speed, 0); // enemy moves according to its speed stat
         window->draw(sprite); // draws enemy

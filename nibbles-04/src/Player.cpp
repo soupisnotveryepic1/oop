@@ -36,7 +36,6 @@ Player::Player(int x_pos, int y_pos, int health) {
 }
 
 void Player::draw(RenderWindow* window) {
-    // draws player onto the window
     window->draw(playerSprite);
     for (int i = 0; i < 50; i++) {
         if (arrows_left > 0 && arrows[i].is_fired()) { // if arrow is fired:
@@ -63,7 +62,7 @@ void Player::reload() {
     printf("Reloaded");
 }
 
-void Player::use_arrow() { // allows player to use arrows
+void Player::use_arrow() {
     if (!arrows[arrow_index].is_fired() && arrows_left > 1) { // if this specific arrow has not been fired and player has at least 1 arrow left:
         arrows_left--; // arrows_left decreases by 1
         arrows[arrow_index].use(playerSprite.getPosition()); // arrow is used at the position of the player at the time
@@ -71,7 +70,7 @@ void Player::use_arrow() { // allows player to use arrows
     }
 }
 
-bool Player::successful_hit(Vector2f enemy_position) { // checks if arrow hits an enemy
+bool Player::successful_hit(Vector2f enemy_position) {
     for (int i = 0; i < 50; i++) { // goes through all 50 arrows
         if (arrows[i].is_hit(enemy_position) && arrows[i].is_fired()) { // if an arrow has hit the enemy and that arrow is fired:
             arrows[i].hit_target(); // sets the arrow so that it has hit the target (which makes fired = false)
@@ -81,7 +80,7 @@ bool Player::successful_hit(Vector2f enemy_position) { // checks if arrow hits a
     return false; // if not, returns false
 }
 
-bool Player::hit_by_enemy(Vector2f enemy_position) { // checks if player is hit by the enemy
+bool Player::hit_by_enemy(Vector2f enemy_position) {
     if (enemy_position.x >= playerSprite.getPosition().x - 75 && enemy_position.x <= playerSprite.getPosition().x && enemy_position.y >= playerSprite.getPosition().y - 50 && enemy_position.y <= playerSprite.getPosition().y + 25) {
         // if enemy comes within the player's hitbox, returns true;
         return true;

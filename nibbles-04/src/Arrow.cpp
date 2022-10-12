@@ -26,7 +26,6 @@ Arrow::Arrow() {
 }
 
 bool Arrow::is_hit(Vector2f enemy_position) {
-    // checks if the arrow has hit the enemy or not
     if (enemy_position.x >= sprite.getPosition().x - 25 && enemy_position.x <= sprite.getPosition().x + 25 && enemy_position.y >= sprite.getPosition().y - 75 && enemy_position.y <= sprite.getPosition().y){
         // if the arrow hits the enemy (in the hitbox), returns boolean true if so
         return true;

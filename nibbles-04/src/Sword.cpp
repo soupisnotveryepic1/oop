@@ -16,7 +16,7 @@ void Sword::initSprite() {
 Sword::Sword() {
     initTexture();
     initSprite();
-    // setting direction to x = -1 (left to right), and y between -0.5 and 0.5 (boss throws sword in random direction)
+    // setting direction to x = -1 (right to left), and y between -0.5 and 0.5 (boss throws sword in random direction)
     direction.x = -1;
     direction.y = -0.5 + (double)rand()/RAND_MAX;
     // sets speed if sword to 2
@@ -28,7 +28,7 @@ Sword::Sword() {
 bool Sword::is_hit(Vector2f player_position) {
     // checks if the sword has hit the player or not
     if (player_position.x >= sprite.getPosition().x - 25 && player_position.x <= sprite.getPosition().x + 50 && player_position.y >= sprite.getPosition().y - 100 && player_position.y <= sprite.getPosition().y){
-        // if the sword hits the player (in the hitbox), returns true if so
+        // returns true if the sword hits the player (inside the hitbox)
         return true;
     }
     // if not, returns false;
