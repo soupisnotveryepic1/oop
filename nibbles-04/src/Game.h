@@ -32,7 +32,10 @@ private:
     Text damage_text;
     Text health_text;
     Text result_text;
+    Text arrow_text;
     Font font;
+    Sprite arrowSprite;
+    Texture arrowTexture;
     Sprite goldSprite;
     Texture goldTexture;
     Sprite heartSprite;
@@ -67,9 +70,13 @@ public:
         damage_text.setFillColor(sf::Color::Magenta);
         damage_text.setCharacterSize(20);
 
+        arrow_text.setFont(font);
+        arrow_text.setFillColor(sf::Color::Green);
+        arrow_text.setCharacterSize(20);
+
         instructions_text.setFont(font);
         instructions_text.setFillColor(sf::Color::White);
-        instructions_text.setCharacterSize(30);
+        instructions_text.setCharacterSize(25);
 
         result_text.setFont(font);
         result_text.setFillColor(sf::Color::Cyan);
@@ -79,6 +86,11 @@ public:
         goldSprite.setTexture(goldTexture);
         goldSprite.scale(0.12f,0.12f);
         goldSprite.setPosition(20,770);
+
+        arrowTexture.loadFromFile("C:/textures/arrow.png");
+        arrowSprite.setTexture(arrowTexture);
+        arrowSprite.scale(0.07f,0.07f);
+        arrowSprite.setPosition(650,745);
 
         heartTexture.loadFromFile("C:/textures/heart.png");
         heartSprite.setTexture(heartTexture);
@@ -101,7 +113,12 @@ public:
         backgroundSprite.setPosition(0,0);
         backgroundSprite.scale(1.44,1.44);
 
-        string instruction = "Controls: \n\nArrow keys to move\n\nPress Space to shoot arrows\n\nU: Upgrade Speed\n\nZ: Upgrade Damage\n\nR: Reload Arrows\n\nPress L to Start";
+        string instruction = "There will be enemies that come from the right.\nYou must shoot them with your arrows.\n"
+                             "There will be three waves of enemies.\nAfter that, a boss that throws swords will appear.\n"
+                             "You may upgrade your stats with gold\nGold is earned from killing enemies.\nIf you run out"
+                             " of arrows, you must reload.""\n\nControls: \n\n"
+                             "Arrow keys to move\n\nPress Space to shoot arrows\n\nU: Upgrade Speed\n\n"
+                             "Z: Upgrade Damage\n\nR: Reload Arrows\n\nPress L to Start";
         auto start = std::chrono::steady_clock::now(); // starts timer once game is launched
 
         while (window->isOpen())
@@ -258,6 +275,7 @@ public:
             // setting strings to wanted values
             string gold_display = to_string(player->get_gold());
             string health_display = to_string(player->get_health());
+            string arrow_display = to_string(player->no_arrows_left() - 1);
             string speed_display = "Speed: " + to_string(int(player->get_speed())) + " Cost to Upgrade: 350  Upgrade:U";
             string damage_display = "Damage: " + to_string(int(player->get_damage())) + " Cost to Upgrade: 500  Upgrade:Z";
             // setting the position and contents of the text
@@ -269,10 +287,12 @@ public:
             damage_text.setString(damage_display);
             gold_text.setPosition(50,770);
             gold_text.setString(gold_display);
+            arrow_text.setString(arrow_display);
+            arrow_text.setPosition(690,745);
             // draws the objects needed to the window
             // if level == 0, displays instructions on the screen
             if (level == 0) {
-                instructions_text.setPosition(100,100);
+                instructions_text.setPosition(50,50);
                 instructions_text.setString(instruction);
                 window->draw(instructions_text);
             }
@@ -291,50 +311,27 @@ public:
                 window->draw(speed_text);
                 window->draw(damage_text);
                 window->draw(health_text);
+                window->draw(arrow_text);
                 window->draw(goldSprite);
                 window->draw(heartSprite);
+                window->draw(arrowSprite);
             }
             if (level == 2){
                 string result_display = "You lost!\nYour score was:" + to_string(score) + "/70\nGold Spent:" + to_string(gold_spent) +  "\nNumber of arrows fired:" + to_string(arrows_fired) ;
                 result_text.setPosition(120,120);
                 result_text.setString(result_display);
                 window->draw(result_text);
-                if (event.type == Event::KeyReleased) {
-                    if (event.key.code == Keyboard::Space) {
-                        restart();
-                    }
-                }
             }
             if (level == 3){
                 string result_display = "You won!\nYour score was:" + to_string(score) + "/70\nGold Spent:" + to_string(gold_spent) +  "\nNumber of arrows fired:" + to_string(arrows_fired) ;
                 result_text.setPosition(120,120);
                 result_text.setString(result_display);
                 window->draw(result_text);
-                if (event.type == Event::KeyReleased) {
-                    if (event.key.code == Keyboard::Space) {
-                        restart();
-                    }
-                }
             }
             window->display();
         }
     }
-    void restart(){
-        enemy_index = 0;
-        score = 0;
-        enemy_number = 0;
-        sword_index = 0;
-        arrows_fired = 0;
-        gold_spent = 0;
-        level = 0;
-        auto start = std::chrono::steady_clock::now();
-        delete player;
-        delete[] enemies;
-        delete boss;
-        player = new Player(100,400, 10);
-        boss = new Boss;
-        enemies = new Enemy[50];
-    }
+
     ~Game() {
         // deletes the memory stored to the heap when game goes out of scope
         delete window;
