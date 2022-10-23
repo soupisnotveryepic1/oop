@@ -12,7 +12,7 @@ private:
     animal** animals;                      // the zoo's animals
 public:
     zoo(string n,int cows,int lions);      // create a zoo with the given number of cows and lions
-    int get_number_animals(){return number_of_animals;}
+    int get_number_of_animals(){return number_of_animals;}
     animal** get_animals(){return animals;}
     string get_name(){return name;}
 };

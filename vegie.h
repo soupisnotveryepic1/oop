@@ -9,8 +9,8 @@ private:
     static int nextID;
 public:
     vegie(string n,int v);      // create a vegie with name n and body volume v
-    string get_food(){return favourite_food;}
-    void set_food(string s_food){favourite_food = s_food;}
+    string get_favourite_food(){return favourite_food;}
+    void set_favourite_food(string s_food){favourite_food = s_food;}
     string get_name(){return "Safe: "+name;}
 
 };
