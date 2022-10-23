@@ -1,0 +1,1 @@
+               add_executable(test animal.cpp vegie.cpp hunter.cpp zoo.cpp main.cpp)
