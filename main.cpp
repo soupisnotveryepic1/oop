@@ -14,11 +14,11 @@ int main(){
     zoo* one = new zoo("Zoo One", 100, 50);
     animal** test = one->get_animals();
     for (int i = 0; i < 150; i++){
-        cout << test[i]->get_id() << endl;
+        cout << test[i]->get_animalID() << endl;
     }
     sort_by_animalID::sort(test,150);
     for (int i = 0; i < 150; i++){
-        cout << test[i]->get_id() << endl;
+        cout << test[i]->get_animalID() << endl;
     }
     sort_by_name::sort(test,150);
     for (int i = 0; i < 150; i++){

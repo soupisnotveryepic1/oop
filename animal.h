@@ -15,5 +15,5 @@ public:
     void set_volume(int s_volume){volume = s_volume;}
     virtual string get_name() = 0;
     int get_volume(){return volume;}
-    int get_id(){return animalID;}
+    int get_animalID(){return animalID;}
 };
