@@ -5,6 +5,7 @@ using namespace std;
 Manager::Manager(int payRate){
     hoursWorked = 0;
     daysWorked = 0;
+    time_count = 0;
 }
 
 void Manager::work(int mins){
