@@ -3,10 +3,10 @@
 using namespace std;
 
 class Employee{
-private:
+protected:
     int payRate; // hourly payRate
-public:
     float energyLevel;   // Initially 100%
+public:
     Employee();
     Employee(int payRate);   // creates a Employee with payRate
     void takeABreak(int mins);
