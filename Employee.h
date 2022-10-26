@@ -5,8 +5,8 @@ using namespace std;
 class Employee{
 private:
     int payRate; // hourly payRate
-    float energyLevel;   // Initially 100%
 public:
+    float energyLevel;   // Initially 100%
     Employee();
     Employee(int payRate);   // creates a Employee with payRate
     void takeABreak(int mins);
