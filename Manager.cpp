@@ -9,7 +9,7 @@ Manager::Manager(int payRate){
 
 void Manager::work(int mins){
     for (int i = 0; i < mins; i++){
-        if (energyLevel >= 0.25) {
+        if (energyLevel >= 0.25 && time_count < ) {
             energyLevel = energyLevel - 0.25;
             time_count++;
         }
