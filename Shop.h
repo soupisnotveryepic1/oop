@@ -19,7 +19,6 @@ public:
             return NULL;
         } else {
             Shop();
-            return
         }
     };
 };
