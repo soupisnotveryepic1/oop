@@ -11,6 +11,7 @@ void Manager::work(int mins){
     for (int i = 0; i < mins; i++){
         if (energyLevel >= 0.25) {
             energyLevel = energyLevel - 0.25;
+            time_count++;
         }
     }
 }

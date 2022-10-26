@@ -33,7 +33,7 @@ void Casual::work(int mins){
         if (dayCount <= 5){
             hoursWorked[dayCount] = time_count/60;
         } else {
-            hoursWorked[dayCount] = time_count/30;
+            hoursWorked[dayCount] = time_count/20;
         }
     }
 }

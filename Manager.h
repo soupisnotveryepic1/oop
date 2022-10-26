@@ -7,6 +7,7 @@ class Manager : public Employee{
 private:
     float hoursWorked;
     int daysWorked;
+    float time_count;
 public:
     Manager();
     Manager(int payRate);
