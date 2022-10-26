@@ -25,12 +25,14 @@ void Casual::endWorkDay() {
 
 void Casual::work(int mins){
     for (int i = 0; i < mins; i++){
-        energyLevel = energyLevel - 0.5;
-    }
-    if (dayCount <= 5){
-        hoursWorked[dayCount] = mins/60;
-    } else {
-        hoursWorked[dayCount] = mins/30;
+        if (energyLevel >= 0.5) {
+            energyLevel = energyLevel - 0.5;
+        }
+        if (dayCount <= 5){
+            hoursWorked[dayCount] = mins/60;
+        } else {
+            hoursWorked[dayCount] = mins/30;
+        }
     }
 }
 
