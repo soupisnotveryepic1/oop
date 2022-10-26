@@ -1,1 +1,2 @@
-               add_executable(test animal.cpp vegie.cpp hunter.cpp zoo.cpp sort_by_animalID.cpp sort_by_name.cpp main.cpp)
+
+add_executable(testing main-1-1.cpp)
