@@ -6,8 +6,7 @@ Casual::Casual(){
 
 }
 
-Casual::Casual(int payRate) {
-    this->payRate = payRate;
+Casual::Casual(int payRate) : Employee(payRate){
     for (int i = 0; i < 7; i++){
         hoursWorked[i] = 0;
     }
