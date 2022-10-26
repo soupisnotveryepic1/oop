@@ -2,6 +2,10 @@
 #include "Employee.h"
 using namespace std;
 
+Employee::Employee(){
+
+}
+
 Employee::Employee(int payRate){
     this->payRate = payRate;
     energyLevel = 100;
