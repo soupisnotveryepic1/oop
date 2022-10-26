@@ -15,10 +15,11 @@ public:
     Employee **get_employees(){return employees;};        // Returns the array of pointers to the five employee objects
     int get_count(){return count;}; // Returns the amount of employees added to the shop
     static Shop* createShop(int authority){
-        if (authority != 8){
-            return NULL;
-        } else {
+        if (authority == 10){
             Shop();
+        } else {
+            return NULL;
         }
+        return nullptr;
     };
 };
