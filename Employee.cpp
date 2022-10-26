@@ -12,7 +12,9 @@ Employee::Employee(int payRate){
 }
 
 void Employee::takeABreak(int mins){
-    if (energyLevel <= 98){
-        energyLevel = energyLevel + 2*mins;
+    for (int i = 0; i < mins; i++) {
+        if (energyLevel <= 98) {
+            energyLevel = energyLevel + 2;
+        }
     }
 }
