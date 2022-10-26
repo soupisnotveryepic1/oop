@@ -16,4 +16,5 @@ public:
     int get_daysWorked(){return daysWorked;}
     void set_daysWorked(int s_days){daysWorked = s_days;}
     void work(int mins);
+    float pay();
 };
