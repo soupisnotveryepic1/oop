@@ -7,8 +7,7 @@ Shop::Shop(){
 }
 
 void Shop::addEmployee(Employee *employee) {
-    if (count < 5){
-        employees[count] = employee;
-        count++;
-    }
+    employees[0] = new Manager(40);
+    employees[1] = new Manager(20);
+    employees[2] = new Manager(20);
 }
