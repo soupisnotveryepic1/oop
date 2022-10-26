@@ -28,5 +28,6 @@ float Manager::pay(){
     float pay = daysWorked * 8 * payRate;
     daysWorked = 0;
     hoursWorked = 0;
+    time_count = 0;
     return pay;
 }
