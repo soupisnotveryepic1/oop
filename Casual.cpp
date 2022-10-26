@@ -11,6 +11,7 @@ Casual::Casual(int payRate) : Employee(payRate){
         hoursWorked[i] = 0;
     }
     dayCount = 0;
+    time_count = 0;
 }
 
 void Casual::endWorkDay() {
