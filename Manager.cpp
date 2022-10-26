@@ -25,7 +25,8 @@ void Manager::work(int mins){
 }
 
 float Manager::pay(){
+    float pay = daysWorked * 8 * payRate;
     daysWorked = 0;
     hoursWorked = 0;
-    return daysWorked * 8 * payRate;
+    return pay;
 }
