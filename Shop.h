@@ -16,7 +16,8 @@ public:
     int get_count(){return count;}; // Returns the amount of employees added to the shop
     static Shop* createShop(int authority){
         if (authority == 10){
-            Shop();
+            Shop* a = new Shop();
+            return a;
         } else {
             return NULL;
         }
