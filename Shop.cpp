@@ -9,5 +9,6 @@ Shop::Shop(){
 void Shop::addEmployee(Employee *employee) {
     if (count < 5){
         employees[count] = employee;
+        count++;
     }
 }
