@@ -15,6 +15,7 @@ Casual::Casual(int payRate) : Employee(payRate){
 
 void Casual::endWorkDay() {
     energyLevel = 100;
+    time_count = 0;
     if (dayCount == 7){
         dayCount = 0;
     } else {
@@ -26,11 +27,12 @@ void Casual::work(int mins){
     for (int i = 0; i < mins; i++){
         if (energyLevel >= 0.5) {
             energyLevel = energyLevel - 0.5;
+            time_count++;
         }
         if (dayCount <= 5){
-            hoursWorked[dayCount] = mins/60;
+            hoursWorked[dayCount] = time_count/60;
         } else {
-            hoursWorked[dayCount] = mins/30;
+            hoursWorked[dayCount] = time_count/30;
         }
     }
 }

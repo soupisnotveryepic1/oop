@@ -7,6 +7,7 @@ class Casual : public Employee{
 private:
     float hoursWorked[7];
     int dayCount;
+    float time_count;
 public:
     Casual();
     Casual(int payRate);
